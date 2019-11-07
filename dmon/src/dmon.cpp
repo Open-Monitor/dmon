@@ -14,6 +14,7 @@ void printer() {
 	while (true) {
     printf("\n");
     NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
+    NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
     SystemMonitor::loadStruct load = systemMon.getLoad();
     SystemMonitor::memoryStruct mem = systemMon.getMem();
     SystemMonitor::versionStruct vStruct = systemMon.getVersion();
@@ -30,7 +31,12 @@ void printer() {
     printf("Load 15min Average:\t %.2f \t\t %%\n", load.loadAvg15);
     printf("Total CPU Useage:\t %.2f \t\t %%\n", cpu);
     printf("Total Uptime:\t\t %.2f \t Sec\n", uptime);
+    printf("\n");
     printf("IPv4 Address:\t\t %s \t %s \n", ip.addr.c_str(), ip.name.c_str());
+    printf("Bytes: %s \t\t %lld \t %lld\n", bStruct.ifname.c_str(),
+        bStruct.r_bytes, bStruct.t_bytes);
+    printf("Packets: %s \t %lld \t %lld\n", bStruct.ifname.c_str(),
+        bStruct.r_packets, bStruct.t_packets);
     std::this_thread::sleep_for(std::chrono::seconds(2));
 	}
 }
@@ -43,6 +49,8 @@ int main() {
   NetworkMonitor networkMon = NetworkMonitor();
   SystemMonitor systemMon = SystemMonitor();
 
+
+  NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
   NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
   SystemMonitor::versionStruct vStruct = systemMon.getVersion();
   SystemMonitor::loadStruct load = systemMon.getLoad();
@@ -59,5 +67,11 @@ int main() {
   printf("Load 10min Average:\t %.2f \t\t %%\n", load.loadAvg10);
   printf("Load 15min Average:\t %.2f \t\t %%\n", load.loadAvg15);
   printf("Total Uptime:\t\t %.2f \t Sec\n", systemMon.getUptime());
+  printf("\n");
   printf("IPv4 Address:\t\t %s \t %s \n", ip.addr.c_str(), ip.name.c_str());
+  printf("interface Name \t\t Inbound \t Outbound\n");
+  printf("Bytes: %s \t\t %lld \t %lld\n", bStruct.ifname.c_str(),
+      bStruct.r_bytes, bStruct.t_bytes);
+  printf("Packets: %s \t %lld \t %lld\n", bStruct.ifname.c_str(),
+      bStruct.r_packets, bStruct.t_packets);
 }

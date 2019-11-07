@@ -26,3 +26,25 @@ NetworkMonitor::ipStruct NetworkMonitor::getIPV4Addr () {
 			freeifaddrs(ifAddrStruct);
     return info;
 }
+NetworkMonitor::bandwidthStruct NetworkMonitor::getBandwidth() {
+  FILE* file;
+  bandwidthStruct bStruct;
+  char buf[200], ifname[40];
+  long long r_bytes, t_bytes, r_packets, t_packets;
+
+  file = fopen("/proc/net/dev", "r");
+  for (int i=0; i<2; i++) {
+    fgets(buf, 200, file);
+  }
+  while (fgets(buf, 200, file)) {
+    sscanf(buf, "%[^:]: %lld %lld %*d %*d %*d %*d %*d %*d %lld %lld",
+        ifname, &r_bytes, &r_packets, &t_bytes, &t_packets);
+  }
+  fclose(file);
+  bStruct.ifname = ifname;
+  bStruct.r_bytes = r_bytes /1024;
+  bStruct.r_packets = r_packets;
+  bStruct.t_bytes = t_bytes /1024;
+  bStruct.t_packets = t_packets;
+  return bStruct;
+}
