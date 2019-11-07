@@ -22,10 +22,16 @@ class SystemMonitor {
     std::string version;
     std::string release;
   };
+  struct diskStruct {
+    unsigned long read;
+    unsigned long write;
+    unsigned long ios_pgr;
+  };
     SystemMonitor();
     memoryStruct getMem();
     double getCpu();
     loadStruct getLoad();
     double getUptime();
     versionStruct getVersion();
+    diskStruct getDiskIO();
 };
