@@ -3,9 +3,9 @@
 NetworkMonitor::NetworkMonitor() {};
 
 NetworkMonitor::ipStruct NetworkMonitor::getIPV4Addr () {
-  struct ifaddrs * ifAddrStruct=NULL;
-  struct ifaddrs * ifa=NULL;
-  void * tmpAddrPtr=NULL;
+  struct ifaddrs* ifAddrStruct=NULL;
+  struct ifaddrs* ifa=NULL;
+  void* tmpAddrPtr=NULL;
 
   getifaddrs(&ifAddrStruct);
   ipStruct info;
@@ -15,7 +15,7 @@ NetworkMonitor::ipStruct NetworkMonitor::getIPV4Addr () {
       continue;
     }
     if (ifa->ifa_addr->sa_family == AF_INET) {
-      tmpAddrPtr=&((struct sockaddr_in *)ifa->ifa_addr)->sin_addr;
+      tmpAddrPtr=&((struct sockaddr_in*)ifa->ifa_addr)->sin_addr;
       char addressBuffer[INET_ADDRSTRLEN];
       inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
       info.addr = addressBuffer;
