@@ -10,10 +10,10 @@ LDIR=../lib
 
 LIBS=-lm
 
-_DEPS = dmon.h systemMon.h
+_DEPS = dmon.h systemMon.h networkMon.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = dmon.o systemMon.o
+_OBJ = dmon.o systemMon.o networkMon.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)
