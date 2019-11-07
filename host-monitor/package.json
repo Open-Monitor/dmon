@@ -4,8 +4,9 @@
   "description": "open monitor host monitor service",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
-    "test": "jest"
+    "start": "NODE_ENV=dev nodemon --exec babel-node index.js",
+    "test:functional": "NODE_ENV=dev babel-node test/functional.js",
+    "test:unit": "jest"
   },
   "repository": {
     "type": "git",
