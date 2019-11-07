@@ -73,6 +73,8 @@ double SystemMonitor::getUptime() {
   fclose(file);
   return uptime;
 }
+
+
 SystemMonitor::versionStruct SystemMonitor::getVersion() {
   FILE* file;
   versionStruct vStruct;
@@ -84,4 +86,23 @@ SystemMonitor::versionStruct SystemMonitor::getVersion() {
   vStruct.version = version;
   vStruct.release = release;
   return vStruct;
+}
+
+SystemMonitor::diskStruct SystemMonitor::getDiskIO() {
+  FILE* file;
+  char line[256];
+  diskStruct dStruct;
+  unsigned long ios_pgr;
+	unsigned long rd_ios, wr_ios;
+  file = fopen("/proc/diskstats", "r");
+  while (fgets(line, sizeof(line), file) != NULL) {
+		sscanf(line, "%*u %*u %*s %lu %*u %*u %*u %lu %*u %*u %*u %lu %*u %*u %*u %*u %*u %*u",
+			   &rd_ios, &wr_ios,&ios_pgr);
+    //sectors are 512 bytes / 2 -> kb
+    dStruct.read += rd_ios / 2;
+    dStruct.write += wr_ios / 2;
+    dStruct.ios_pgr += ios_pgr;
+  }
+  fclose(file);
+  return dStruct;
 }
