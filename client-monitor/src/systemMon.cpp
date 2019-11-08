@@ -79,12 +79,14 @@ SystemMonitor::versionStruct SystemMonitor::getVersion() {
   FILE* file;
   versionStruct vStruct;
   char os[256], version[256], release[256];
+  std::string versionTag;
   file = fopen("/proc/version_signature", "r");
   fscanf(file, "%s %s %s", os, version, release);
   fclose(file);
   vStruct.os = os;
   vStruct.version = version;
   vStruct.release = release;
+  vStruct.versionTag = vStruct.os +" "+ vStruct.version +" "+ vStruct.release;
   return vStruct;
 }
 

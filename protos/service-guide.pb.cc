@@ -77,8 +77,10 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, version_),
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, ip_),
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, deviceid_),
-  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, inboundbandwith_),
-  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, outboundbandwith_),
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, inboundbandwithbytes_),
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, outboundbandwithbytes_),
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, inboundbandwithpackets_),
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, outboundbandwithpackets_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitResponse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -89,7 +91,7 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::hostService::TransmitPacket)},
-  { 15, -1, sizeof(::hostService::TransmitResponse)},
+  { 17, -1, sizeof(::hostService::TransmitResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -104,22 +106,24 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_service_2dguide_2eproto[] =
-  "\n\023service-guide.proto\022\013hostService\"\326\001\n\016T"
+  "\n\023service-guide.proto\022\013hostService\"\241\002\n\016T"
   "ransmitPacket\022\022\n\nMemoryUsed\030\001 \001(\003\022\027\n\017Mem"
   "oryAvailable\030\002 \001(\003\022\023\n\013MemoryTotal\030\003 \001(\003\022"
   "\020\n\010CpuUsage\030\004 \001(\001\022\016\n\006UpTime\030\005 \001(\001\022\017\n\007Ver"
   "sion\030\006 \001(\t\022\n\n\002IP\030\007 \001(\t\022\020\n\010DeviceID\030\010 \001(\t"
-  "\022\027\n\017InboundBandwith\030\t \001(\003\022\030\n\020OutboundBan"
-  "dwith\030\n \001(\003\"B\n\020TransmitResponse\022\021\n\tDidIn"
-  "sert\030\001 \001(\010\022\033\n\023FrequencyAdjustment\030\002 \001(\0052"
-  "[\n\013HostService\022L\n\010Transmit\022\033.hostService"
-  ".TransmitPacket\032\035.hostService.TransmitRe"
-  "sponse\"\000(\0010\001b\006proto3"
+  "\022\034\n\024InboundBandwithBytes\030\t \001(\003\022\035\n\025Outbou"
+  "ndBandwithBytes\030\n \001(\003\022\036\n\026InboundBandwith"
+  "Packets\030\013 \001(\003\022\037\n\027OutboundBandwithPackets"
+  "\030\014 \001(\003\"B\n\020TransmitResponse\022\021\n\tDidInsert\030"
+  "\001 \001(\010\022\033\n\023FrequencyAdjustment\030\002 \001(\0052[\n\013Ho"
+  "stService\022L\n\010Transmit\022\033.hostService.Tran"
+  "smitPacket\032\035.hostService.TransmitRespons"
+  "e\"\000(\0010\001b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_service_2dguide_2eproto = {
   false, InitDefaults_service_2dguide_2eproto, 
   descriptor_table_protodef_service_2dguide_2eproto,
-  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 420,
+  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 495,
 };
 
 void AddDescriptors_service_2dguide_2eproto() {
@@ -150,8 +154,10 @@ const int TransmitPacket::kUpTimeFieldNumber;
 const int TransmitPacket::kVersionFieldNumber;
 const int TransmitPacket::kIPFieldNumber;
 const int TransmitPacket::kDeviceIDFieldNumber;
-const int TransmitPacket::kInboundBandwithFieldNumber;
-const int TransmitPacket::kOutboundBandwithFieldNumber;
+const int TransmitPacket::kInboundBandwithBytesFieldNumber;
+const int TransmitPacket::kOutboundBandwithBytesFieldNumber;
+const int TransmitPacket::kInboundBandwithPacketsFieldNumber;
+const int TransmitPacket::kOutboundBandwithPacketsFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 TransmitPacket::TransmitPacket()
@@ -176,8 +182,8 @@ TransmitPacket::TransmitPacket(const TransmitPacket& from)
     deviceid_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.deviceid_);
   }
   ::memcpy(&memoryused_, &from.memoryused_,
-    static_cast<size_t>(reinterpret_cast<char*>(&outboundbandwith_) -
-    reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwith_));
+    static_cast<size_t>(reinterpret_cast<char*>(&outboundbandwithpackets_) -
+    reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
   // @@protoc_insertion_point(copy_constructor:hostService.TransmitPacket)
 }
 
@@ -188,8 +194,8 @@ void TransmitPacket::SharedCtor() {
   ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   deviceid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&memoryused_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&outboundbandwith_) -
-      reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwith_));
+      reinterpret_cast<char*>(&outboundbandwithpackets_) -
+      reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
 }
 
 TransmitPacket::~TransmitPacket() {
@@ -222,8 +228,8 @@ void TransmitPacket::Clear() {
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   deviceid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&memoryused_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&outboundbandwith_) -
-      reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwith_));
+      reinterpret_cast<char*>(&outboundbandwithpackets_) -
+      reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
   _internal_metadata_.Clear();
 }
 
@@ -323,17 +329,31 @@ const char* TransmitPacket::_InternalParse(const char* begin, const char* end, v
         ptr += size;
         break;
       }
-      // int64 InboundBandwith = 9;
+      // int64 InboundBandwithBytes = 9;
       case 9: {
         if (static_cast<::google::protobuf::uint8>(tag) != 72) goto handle_unusual;
-        msg->set_inboundbandwith(::google::protobuf::internal::ReadVarint(&ptr));
+        msg->set_inboundbandwithbytes(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // int64 OutboundBandwith = 10;
+      // int64 OutboundBandwithBytes = 10;
       case 10: {
         if (static_cast<::google::protobuf::uint8>(tag) != 80) goto handle_unusual;
-        msg->set_outboundbandwith(::google::protobuf::internal::ReadVarint(&ptr));
+        msg->set_outboundbandwithbytes(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // int64 InboundBandwithPackets = 11;
+      case 11: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 88) goto handle_unusual;
+        msg->set_inboundbandwithpackets(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      // int64 OutboundBandwithPackets = 12;
+      case 12: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 96) goto handle_unusual;
+        msg->set_outboundbandwithpackets(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
@@ -481,26 +501,52 @@ bool TransmitPacket::MergePartialFromCodedStream(
         break;
       }
 
-      // int64 InboundBandwith = 9;
+      // int64 InboundBandwithBytes = 9;
       case 9: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (72 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &inboundbandwith_)));
+                 input, &inboundbandwithbytes_)));
         } else {
           goto handle_unusual;
         }
         break;
       }
 
-      // int64 OutboundBandwith = 10;
+      // int64 OutboundBandwithBytes = 10;
       case 10: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (80 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &outboundbandwith_)));
+                 input, &outboundbandwithbytes_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 InboundBandwithPackets = 11;
+      case 11: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (88 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &inboundbandwithpackets_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 OutboundBandwithPackets = 12;
+      case 12: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (96 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &outboundbandwithpackets_)));
         } else {
           goto handle_unusual;
         }
@@ -589,14 +635,24 @@ void TransmitPacket::SerializeWithCachedSizes(
       8, this->deviceid(), output);
   }
 
-  // int64 InboundBandwith = 9;
-  if (this->inboundbandwith() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(9, this->inboundbandwith(), output);
+  // int64 InboundBandwithBytes = 9;
+  if (this->inboundbandwithbytes() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(9, this->inboundbandwithbytes(), output);
   }
 
-  // int64 OutboundBandwith = 10;
-  if (this->outboundbandwith() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(10, this->outboundbandwith(), output);
+  // int64 OutboundBandwithBytes = 10;
+  if (this->outboundbandwithbytes() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(10, this->outboundbandwithbytes(), output);
+  }
+
+  // int64 InboundBandwithPackets = 11;
+  if (this->inboundbandwithpackets() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(11, this->inboundbandwithpackets(), output);
+  }
+
+  // int64 OutboundBandwithPackets = 12;
+  if (this->outboundbandwithpackets() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(12, this->outboundbandwithpackets(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -670,14 +726,24 @@ void TransmitPacket::SerializeWithCachedSizes(
         8, this->deviceid(), target);
   }
 
-  // int64 InboundBandwith = 9;
-  if (this->inboundbandwith() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(9, this->inboundbandwith(), target);
+  // int64 InboundBandwithBytes = 9;
+  if (this->inboundbandwithbytes() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(9, this->inboundbandwithbytes(), target);
   }
 
-  // int64 OutboundBandwith = 10;
-  if (this->outboundbandwith() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(10, this->outboundbandwith(), target);
+  // int64 OutboundBandwithBytes = 10;
+  if (this->outboundbandwithbytes() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(10, this->outboundbandwithbytes(), target);
+  }
+
+  // int64 InboundBandwithPackets = 11;
+  if (this->inboundbandwithpackets() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(11, this->inboundbandwithpackets(), target);
+  }
+
+  // int64 OutboundBandwithPackets = 12;
+  if (this->outboundbandwithpackets() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(12, this->outboundbandwithpackets(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -753,18 +819,32 @@ size_t TransmitPacket::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
-  // int64 InboundBandwith = 9;
-  if (this->inboundbandwith() != 0) {
+  // int64 InboundBandwithBytes = 9;
+  if (this->inboundbandwithbytes() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->inboundbandwith());
+        this->inboundbandwithbytes());
   }
 
-  // int64 OutboundBandwith = 10;
-  if (this->outboundbandwith() != 0) {
+  // int64 OutboundBandwithBytes = 10;
+  if (this->outboundbandwithbytes() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->outboundbandwith());
+        this->outboundbandwithbytes());
+  }
+
+  // int64 InboundBandwithPackets = 11;
+  if (this->inboundbandwithpackets() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->inboundbandwithpackets());
+  }
+
+  // int64 OutboundBandwithPackets = 12;
+  if (this->outboundbandwithpackets() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->outboundbandwithpackets());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -821,11 +901,17 @@ void TransmitPacket::MergeFrom(const TransmitPacket& from) {
   if (from.uptime() != 0) {
     set_uptime(from.uptime());
   }
-  if (from.inboundbandwith() != 0) {
-    set_inboundbandwith(from.inboundbandwith());
+  if (from.inboundbandwithbytes() != 0) {
+    set_inboundbandwithbytes(from.inboundbandwithbytes());
   }
-  if (from.outboundbandwith() != 0) {
-    set_outboundbandwith(from.outboundbandwith());
+  if (from.outboundbandwithbytes() != 0) {
+    set_outboundbandwithbytes(from.outboundbandwithbytes());
+  }
+  if (from.inboundbandwithpackets() != 0) {
+    set_inboundbandwithpackets(from.inboundbandwithpackets());
+  }
+  if (from.outboundbandwithpackets() != 0) {
+    set_outboundbandwithpackets(from.outboundbandwithpackets());
   }
 }
 
@@ -865,8 +951,10 @@ void TransmitPacket::InternalSwap(TransmitPacket* other) {
   swap(memorytotal_, other->memorytotal_);
   swap(cpuusage_, other->cpuusage_);
   swap(uptime_, other->uptime_);
-  swap(inboundbandwith_, other->inboundbandwith_);
-  swap(outboundbandwith_, other->outboundbandwith_);
+  swap(inboundbandwithbytes_, other->inboundbandwithbytes_);
+  swap(outboundbandwithbytes_, other->outboundbandwithbytes_);
+  swap(inboundbandwithpackets_, other->inboundbandwithpackets_);
+  swap(outboundbandwithpackets_, other->outboundbandwithpackets_);
 }
 
 ::google::protobuf::Metadata TransmitPacket::GetMetadata() const {

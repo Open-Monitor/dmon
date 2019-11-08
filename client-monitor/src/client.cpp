@@ -1,18 +1,16 @@
-#include <chrono>
 #include <iostream>
-#include <memory>
-#include <random>
 #include <string>
 #include <thread>
-
 #include <chrono>
+
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
-#include "../include/service-guide.grpc.pb.h"
+#include <functional>
+#include "../../protos/service-guide.grpc.pb.h"
 #include "../include/networkMon.h"
 #include "../include/systemMon.h"
 
@@ -37,6 +35,8 @@ TransmitPacket MakeTransmitPacket() {
   SystemMonitor::versionStruct vStruct = systemMon.getVersion();
   //SystemMonitor::loadStruct load = systemMon.getLoad();
   SystemMonitor::memoryStruct mem = systemMon.getMem();
+  std::hash<std::string> str_hash;
+  std::string deviceID = std::to_string(str_hash(ip.addr.c_str()));
   double x = systemMon.getCpu();
   TransmitPacket n;
   n.set_memoryused(mem.memUsed);
@@ -44,11 +44,13 @@ TransmitPacket MakeTransmitPacket() {
   n.set_memorytotal(mem.totalMem);
   n.set_cpuusage(x);
   n.set_uptime(systemMon.getUptime());
-  n.set_version(vStruct.os.c_str());
+  n.set_version(vStruct.versionTag);
   n.set_ip(ip.addr.c_str());
-  n.set_deviceid("1");
-  n.set_inboundbandwith(bStruct.r_bytes);
-  n.set_outboundbandwith(bStruct.t_bytes);
+  n.set_deviceid(deviceID);
+  //n.set_inboundbandwithbytes(bStruct.r_bytes);
+  //n.set_outboundbandwithbytes(bStruct.t_bytes);
+  n.set_inboundbandwithpackets(bStruct.r_bytes);
+  n.set_outboundbandwithpackets(bStruct.t_bytes);
   return n;
 }
 
@@ -91,7 +93,7 @@ class RouteGuideClient {
 };
 int main(int argc, char** argv) {
   RouteGuideClient guide(
-      grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+      grpc::CreateChannel("localhost:50486", grpc::InsecureChannelCredentials()));
   std::cout << "-------------- RouteChat --------------" << std::endl;
   while (true) {
     guide.RouteChat();

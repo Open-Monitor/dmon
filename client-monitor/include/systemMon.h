@@ -21,6 +21,7 @@ class SystemMonitor {
     std::string os;
     std::string version;
     std::string release;
+    std::string versionTag;
   };
   struct diskStruct {
     unsigned long read;

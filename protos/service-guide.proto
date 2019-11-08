@@ -8,7 +8,7 @@ service HostService {
 
 message TransmitPacket {
     int64 MemoryUsed = 1;       // mem in kb
-    int64 MemoryAvailable = 2; 
+    int64 MemoryAvailable = 2;
     int64 MemoryTotal = 3;
 
     double CpuUsage = 4;    // % of the cores
@@ -18,8 +18,10 @@ message TransmitPacket {
     string IP = 7; // inbound IP
     string DeviceID = 8;
 
-    int64 InboundBandwith = 9;
-    int64 OutboundBandwith = 10;
+    int64 InboundBandwithBytes = 9;
+    int64 OutboundBandwithBytes = 10;
+    int64 InboundBandwithPackets = 11;
+    int64 OutboundBandwithPackets = 12;
 }
 
 message TransmitResponse {

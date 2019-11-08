@@ -27,10 +27,10 @@ $(APPNAME): $(PROTOS_PATH)/service-guide.pb.o $(PROTOS_PATH)/service-guide.grpc.
 	$(CC) $^ $(LDFLAGS) -o $@
 
 %.grpc.pb.cc: %.proto
-	$(PROTOC) -I $(PROTOS_PATH) --grpc_out=../../protos --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
+	$(PROTOC) -I $(PROTOS_PATH) --grpc_out=../protos --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
 
 %.pb.cc: %.proto
-	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=../../protos $<
+	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=../protos $<
 
 .PHONY: clean
 

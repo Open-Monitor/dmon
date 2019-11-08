@@ -1,7 +1,7 @@
 const manifest = (env) => ({
   grpc: ({
-    dev: 'localhost:50051',
-    prod: 'localhost:50051',
+    dev: 'localhost:50486',
+    prod: 'localhost:50486',
   })[env],
   elastic: ({
     dev: 'http://localhost:9200',
