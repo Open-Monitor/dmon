@@ -32,6 +32,8 @@ const TRANSMIT_PACKETS = [{
   CpuUsage: 4.0,
   UpTime: 5.0,
 
+  DeviceID: 'example_device',
+
   Version: 'basic',
   IP: 'duh',
 
