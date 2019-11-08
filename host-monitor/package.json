@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=dev nodemon --exec babel-node index.js",
-    "test:functional": "NODE_ENV=dev babel-node test/functional.js",
+    "test:sys": "NODE_ENV=dev babel-node test/*.js",
     "test:unit": "jest"
   },
   "repository": {
