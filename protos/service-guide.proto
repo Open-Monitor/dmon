@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package hostService;
+
+service HostService {
+    rpc Transmit(stream TransmitPacket) returns(stream TransmitResponse) {}
+}
+
+message TransmitPacket {
+    int64 MemoryUsed = 1;       // mem in kb
+    int64 MemoryAvailable = 2; 
+    int64 MemoryTotal = 3;
+
+    double CpuUsage = 4;    // % of the cores
+    double UpTime = 5; // uptime in seconds
+
+    string Version = 6; // version of the system
+    string IP = 7; // inbound IP
+    string DeviceID = 8;
+
+    int64 InboundBandwith = 9;
+    int64 OutboundBandwith = 10;
+}
+
+message TransmitResponse {
+    bool DidInsert = 1;
+    int32 FrequencyAdjustment = 2;
+}
