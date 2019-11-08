@@ -6,7 +6,6 @@ import {Client} from '@elastic/elasticsearch';
 const client = new Client({node: manifest.elastic});
 
 export default async (request) => {
-  console.log(request);
   const insertResp = await client.index({
     index: 'transmissions',
     body: {
