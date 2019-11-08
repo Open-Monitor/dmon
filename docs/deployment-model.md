@@ -15,7 +15,7 @@ graph LR
     D-->E[new artifact replaces old artifact]
 ```
 
-Initialization of this process first requires that webhook script is uploaded & executed on the host machine in addition with the scripts configuration file (this can be found in `scripts/initialization`). This configuration file should represent where to search for new artifacts along with the address of the "host monitoring service". Afer script execution, this process should automatically detect artifact changes and update the binary to most recent. 
+Initialization of this process first requires that webhook script is uploaded & executed on the host machine in addition with the scripts configuration file (this can be found in `scripts/initialization`). This configuration file should represent where to search for new artifact in addition to the address of the "host monitoring service". After script execution, this process should automatically detect artifact changes and update the binary to most recent. 
 
 
 ## Host-Monitor
