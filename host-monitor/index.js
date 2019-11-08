@@ -1,6 +1,6 @@
 import grpc from 'grpc';
-import {loadProto} from './lib/helpers';
-import {transmitHandler} from './lib/rpc-handlers';
+import { loadProto } from './lib/helpers';
+import { transmitHandler } from './lib/rpc-handlers';
 import manifest from './config/manifest';
 
 const PROTO_PATH = __dirname + '/proto/service-guide.proto';
@@ -10,14 +10,19 @@ const server = new grpc.Server();
 
 const bidirectionalHandler = (handler) => {
   return (call) => {
-    call.on('data', (transmitPacket) => {
-      call.write(
-          handler(
-              transmitPacket,
-          ),
-      );
+    const resolvedHandlers = [];
+    call.on('data', async (transmitPacket) => {
+      resolvedHandlers.push(new Promise(async (res, rej) => {
+        const handlerOutput = await handler(
+          transmitPacket,
+        );
+        call.write(handlerOutput);
+        res();
+      }));
     });
-    call.on('end', () => {
+    call.on('end', async () => {
+      await Promise.all(resolvedHandlers);
+
       call.end();
     });
   };
@@ -28,7 +33,7 @@ server.addService(protoDescriptor.HostService.service, {
 });
 
 server.bind(manifest.grpc,
-    grpc.ServerCredentials.createInsecure());
+  grpc.ServerCredentials.createInsecure());
 console.log(`Server running at ${manifest.grpc}`);
 server.start();
 
