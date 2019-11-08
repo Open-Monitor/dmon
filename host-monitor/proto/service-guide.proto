@@ -16,9 +16,10 @@ message TransmitPacket {
 
     string Version = 6; // version of the system
     string IP = 7; // inbound IP
+    string DeviceID = 8;
 
-    int64 InboundBandwith = 8;
-    int64 OutboundBandwith = 9;
+    int64 InboundBandwith = 9;
+    int64 OutboundBandwith = 10;
 }
 
 message TransmitResponse {
