@@ -10,3 +10,9 @@ To start, please first by downloading docker on your respectful system. After do
 Before starting the host monitor service, please have an elastic search instance running. 
 
 To run the host monitor, please ensure that nodeJs is installed on your machine. After, run `npm i` to install all of the dependencies required to run the service, then `npm start` to start the service. 
+
+### Usage
+### Deployment Model
+View deployment model [here](./docs/deployment-model.md)
+
+### Contributing
