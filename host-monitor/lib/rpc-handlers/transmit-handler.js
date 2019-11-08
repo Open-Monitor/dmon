@@ -6,6 +6,7 @@ import {Client} from '@elastic/elasticsearch';
 const client = new Client({node: manifest.elastic});
 
 export default async (request) => {
+  console.log(request);
   const insertResp = await client.index({
     index: 'transmissions',
     body: {
@@ -16,7 +17,6 @@ export default async (request) => {
 
   return {
     DidInsert: insertResp.body.result === 'created',
-    FrequencyAdjustment: 0,
+    FrequencyAdjustment: 1,
   };
 };
-

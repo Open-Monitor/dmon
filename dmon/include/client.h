@@ -1,3 +1,4 @@
+
 #include <chrono>
 #include <iostream>
 #include <memory>
@@ -22,7 +23,3 @@ using grpc::Status;
 using hostService::HostService;
 using hostService::TransmitPacket;
 using hostService::TransmitResponse;
-
-class RouteGuideClient() {};
-  public:
-  RouteGuideClient

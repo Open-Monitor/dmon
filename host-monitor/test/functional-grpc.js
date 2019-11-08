@@ -52,6 +52,7 @@ call.on('data', (p) => {
 });
 
 call.on('end', () => {
+  console.log(data);
   if (data.length !== TRANSMIT_PACKETS.length) {
     console.log('[Fail]: Func Test Failed');
   }
@@ -68,4 +69,3 @@ for (let i = 0; i < TRANSMIT_PACKETS.length; i++) {
 }
 
 call.end();
-
