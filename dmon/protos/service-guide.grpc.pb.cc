@@ -67,4 +67,3 @@ HostService::Service::~Service() {
 
 
 }  // namespace hostService
-

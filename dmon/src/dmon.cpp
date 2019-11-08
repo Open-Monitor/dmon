@@ -41,7 +41,7 @@ void printer() {
     std::this_thread::sleep_for(std::chrono::seconds(2));
 	}
 }
-
+/*
 int main() {
 	printf("\n");
   bool loop = true;
@@ -76,4 +76,4 @@ int main() {
       bStruct.r_bytes, bStruct.t_bytes);
   printf("Packets: %s \t %lld \t %lld\n", bStruct.ifname.c_str(),
       bStruct.r_packets, bStruct.t_packets);
-}
+}*/

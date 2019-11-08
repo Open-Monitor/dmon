@@ -15,29 +15,43 @@ LDFLAGS += -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
            -ldl
 LIBS=-lm
 
-_DEPS = dmon.h systemMon.h networkMon.h
+_DEPS =  systemMon.h networkMon.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = dmon.o systemMon.o networkMon.o client.o
+_OBJ =  systemMon.o networkMon.o client.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-PROTOC=protoc
+
+PROTOC = protoc
 GRPC_CPP_PLUGIN = grpc_cpp_plugin
 GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
 
-PROTOS_PATH = ../protos
+PROTOS_PATH = .
 
 vpath %.proto $(PROTOS_PATH)
 
+#$(ODIR)/%.o: %.cpp $(DEPS)
+#	$(CC) -c $(LDFLAGS) -o $@ $< $(CFLAGS)
+#
+#$(OUTNAME): $(OBJ)
+#	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LIBS)
+#
+all: client server
 
-$(ODIR)/%.o: %.cpp $(DEPS)
-	$(CC) -c $(LDFLAGS) -o $@ $< $(CFLAGS)
+client: service-guide.pb.o service-guide.grpc.pb.o client.o
+	$(CC) $^ $(LDFLAGS) -o $@
 
-$(OUTNAME): $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LIBS)
+server: service-guide.pb.o service-guide.grpc.pb.o server.o
+	$(CC) $^ $(LDFLAGS) -o $@
+
+%.grpc.pb.cc: %.proto
+	$(PROTOC) -I $(PROTOS_PATH) --grpc_out=. --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
+
+%.pb.cc: %.proto
+	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=. $<
 
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ *.pb.cc
