@@ -47,10 +47,10 @@ TransmitPacket MakeTransmitPacket() {
   n.set_version(vStruct.versionTag);
   n.set_ip(ip.addr.c_str());
   n.set_deviceid(deviceID);
-  //n.set_inboundbandwithbytes(bStruct.r_bytes);
-  //n.set_outboundbandwithbytes(bStruct.t_bytes);
-  n.set_inboundbandwithpackets(bStruct.r_bytes);
-  n.set_outboundbandwithpackets(bStruct.t_bytes);
+  n.set_inboundbandwithbytes(bStruct.r_bytes);
+  n.set_outboundbandwithbytes(bStruct.t_bytes);
+  n.set_inboundbandwithpackets(bStruct.r_packets);
+  n.set_outboundbandwithpackets(bStruct.t_packets);
   return n;
 }
 
