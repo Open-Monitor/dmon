@@ -19,6 +19,7 @@ const bidirectionalHandler = (handler) => {
         call.write(handlerOutput);
         res();
       }));
+      console.log(transmitPacket);
     });
     call.on('end', async () => {
       await Promise.all(resolvedHandlers);
@@ -36,4 +37,3 @@ server.bind(manifest.grpc,
   grpc.ServerCredentials.createInsecure());
 console.log(`Server running at ${manifest.grpc}`);
 server.start();
-
