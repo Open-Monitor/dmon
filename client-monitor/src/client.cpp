@@ -3,14 +3,15 @@
 #include <thread>
 #include <chrono>
 
+#include <functional>
+
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
 
-#include <functional>
-#include "../../protos/service-guide.grpc.pb.h"
+#include "service-guide.grpc.pb.h"
 #include "../include/networkMon.h"
 #include "../include/systemMon.h"
 
@@ -33,7 +34,6 @@ TransmitPacket MakeTransmitPacket() {
   NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
   NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
   SystemMonitor::versionStruct vStruct = systemMon.getVersion();
-  //SystemMonitor::loadStruct load = systemMon.getLoad();
   SystemMonitor::memoryStruct mem = systemMon.getMem();
   std::hash<std::string> str_hash;
   std::string deviceID = std::to_string(str_hash(ip.addr.c_str()));

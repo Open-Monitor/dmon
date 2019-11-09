@@ -233,17 +233,29 @@ class TransmitPacket final :
   double uptime() const;
   void set_uptime(double value);
 
-  // int64 InboundBandwith = 9;
-  void clear_inboundbandwith();
-  static const int kInboundBandwithFieldNumber = 9;
-  ::google::protobuf::int64 inboundbandwith() const;
-  void set_inboundbandwith(::google::protobuf::int64 value);
+  // int64 InboundBandwithBytes = 9;
+  void clear_inboundbandwithbytes();
+  static const int kInboundBandwithBytesFieldNumber = 9;
+  ::google::protobuf::int64 inboundbandwithbytes() const;
+  void set_inboundbandwithbytes(::google::protobuf::int64 value);
 
-  // int64 OutboundBandwith = 10;
-  void clear_outboundbandwith();
-  static const int kOutboundBandwithFieldNumber = 10;
-  ::google::protobuf::int64 outboundbandwith() const;
-  void set_outboundbandwith(::google::protobuf::int64 value);
+  // int64 OutboundBandwithBytes = 10;
+  void clear_outboundbandwithbytes();
+  static const int kOutboundBandwithBytesFieldNumber = 10;
+  ::google::protobuf::int64 outboundbandwithbytes() const;
+  void set_outboundbandwithbytes(::google::protobuf::int64 value);
+
+  // int64 InboundBandwithPackets = 11;
+  void clear_inboundbandwithpackets();
+  static const int kInboundBandwithPacketsFieldNumber = 11;
+  ::google::protobuf::int64 inboundbandwithpackets() const;
+  void set_inboundbandwithpackets(::google::protobuf::int64 value);
+
+  // int64 OutboundBandwithPackets = 12;
+  void clear_outboundbandwithpackets();
+  static const int kOutboundBandwithPacketsFieldNumber = 12;
+  ::google::protobuf::int64 outboundbandwithpackets() const;
+  void set_outboundbandwithpackets(::google::protobuf::int64 value);
 
   // @@protoc_insertion_point(class_scope:hostService.TransmitPacket)
  private:
@@ -258,8 +270,10 @@ class TransmitPacket final :
   ::google::protobuf::int64 memorytotal_;
   double cpuusage_;
   double uptime_;
-  ::google::protobuf::int64 inboundbandwith_;
-  ::google::protobuf::int64 outboundbandwith_;
+  ::google::protobuf::int64 inboundbandwithbytes_;
+  ::google::protobuf::int64 outboundbandwithbytes_;
+  ::google::protobuf::int64 inboundbandwithpackets_;
+  ::google::protobuf::int64 outboundbandwithpackets_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_service_2dguide_2eproto;
 };
@@ -622,32 +636,60 @@ inline void TransmitPacket::set_allocated_deviceid(::std::string* deviceid) {
   // @@protoc_insertion_point(field_set_allocated:hostService.TransmitPacket.DeviceID)
 }
 
-// int64 InboundBandwith = 9;
-inline void TransmitPacket::clear_inboundbandwith() {
-  inboundbandwith_ = PROTOBUF_LONGLONG(0);
+// int64 InboundBandwithBytes = 9;
+inline void TransmitPacket::clear_inboundbandwithbytes() {
+  inboundbandwithbytes_ = PROTOBUF_LONGLONG(0);
 }
-inline ::google::protobuf::int64 TransmitPacket::inboundbandwith() const {
-  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.InboundBandwith)
-  return inboundbandwith_;
+inline ::google::protobuf::int64 TransmitPacket::inboundbandwithbytes() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.InboundBandwithBytes)
+  return inboundbandwithbytes_;
 }
-inline void TransmitPacket::set_inboundbandwith(::google::protobuf::int64 value) {
+inline void TransmitPacket::set_inboundbandwithbytes(::google::protobuf::int64 value) {
   
-  inboundbandwith_ = value;
-  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.InboundBandwith)
+  inboundbandwithbytes_ = value;
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.InboundBandwithBytes)
 }
 
-// int64 OutboundBandwith = 10;
-inline void TransmitPacket::clear_outboundbandwith() {
-  outboundbandwith_ = PROTOBUF_LONGLONG(0);
+// int64 OutboundBandwithBytes = 10;
+inline void TransmitPacket::clear_outboundbandwithbytes() {
+  outboundbandwithbytes_ = PROTOBUF_LONGLONG(0);
 }
-inline ::google::protobuf::int64 TransmitPacket::outboundbandwith() const {
-  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.OutboundBandwith)
-  return outboundbandwith_;
+inline ::google::protobuf::int64 TransmitPacket::outboundbandwithbytes() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.OutboundBandwithBytes)
+  return outboundbandwithbytes_;
 }
-inline void TransmitPacket::set_outboundbandwith(::google::protobuf::int64 value) {
+inline void TransmitPacket::set_outboundbandwithbytes(::google::protobuf::int64 value) {
   
-  outboundbandwith_ = value;
-  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.OutboundBandwith)
+  outboundbandwithbytes_ = value;
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.OutboundBandwithBytes)
+}
+
+// int64 InboundBandwithPackets = 11;
+inline void TransmitPacket::clear_inboundbandwithpackets() {
+  inboundbandwithpackets_ = PROTOBUF_LONGLONG(0);
+}
+inline ::google::protobuf::int64 TransmitPacket::inboundbandwithpackets() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.InboundBandwithPackets)
+  return inboundbandwithpackets_;
+}
+inline void TransmitPacket::set_inboundbandwithpackets(::google::protobuf::int64 value) {
+  
+  inboundbandwithpackets_ = value;
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.InboundBandwithPackets)
+}
+
+// int64 OutboundBandwithPackets = 12;
+inline void TransmitPacket::clear_outboundbandwithpackets() {
+  outboundbandwithpackets_ = PROTOBUF_LONGLONG(0);
+}
+inline ::google::protobuf::int64 TransmitPacket::outboundbandwithpackets() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.OutboundBandwithPackets)
+  return outboundbandwithpackets_;
+}
+inline void TransmitPacket::set_outboundbandwithpackets(::google::protobuf::int64 value) {
+  
+  outboundbandwithpackets_ = value;
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.OutboundBandwithPackets)
 }
 
 // -------------------------------------------------------------------

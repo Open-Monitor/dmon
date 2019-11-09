@@ -1,38 +1,47 @@
-#ttp://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
-APPNAME=client
+TARGET_EXEC ?= client
 
-IDIR=/include
-SRCDIR=src
+BUILD_DIR ?= build
+SRC_DIRS ?= src
 
-CC=g++
-CXX=g++
-CFLAGS=-std=c++11 -I$(IDIR)
-CPPFLAGS+=`pkg-config --cflags protobuf grpc`
+SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.cc)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-LDFLAGS += -L/usr/local/lib `pkg-config --libs protobuf grpc++`\
-           -pthread\
-           -Wl,--no-as-needed -lgrpc++_reflection -Wl,--as-needed\
-           -ldl
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
+LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`
 
-# Protobufs
-PROTOC = protoc
-GRPC_CPP_PLUGIN = grpc_cpp_plugin
-GRPC_CPP_PLUGIN_PATH ?= `which $(GRPC_CPP_PLUGIN)`
-PROTOS_PATH=../protos
+$(TARGET_EXEC): $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
+# assembly
+$(BUILD_DIR)/%.s.o: %.s
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(ASFLAGS) -c $< -o $@
 
-$(APPNAME): $(PROTOS_PATH)/service-guide.pb.o $(PROTOS_PATH)/service-guide.grpc.pb.o $(SRCDIR)/networkMon.cpp $(SRCDIR)/systemMon.cpp $(SRCDIR)/client.cpp
-	$(CC) $^ $(LDFLAGS) -o $@
+# c source
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-%.grpc.pb.cc: %.proto
-	$(PROTOC) -I $(PROTOS_PATH) --grpc_out=../protos --plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN_PATH) $<
+# c++ source
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
-%.pb.cc: %.proto
-	$(PROTOC) -I $(PROTOS_PATH) --cpp_out=../protos $<
+# cc source
+$(BUILD_DIR)/%.cc.o: %.cc
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ *.pb.cc *.o
+	$(RM) -r $(BUILD_DIR)
+
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p
