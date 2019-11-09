@@ -28,6 +28,13 @@ NetworkMonitor::ipStruct NetworkMonitor::getIPV4Addr () {
   return info;
 }
 
+std::string NetworkMonitor::getHostName(){
+  char hostname[HOST_NAME_MAX];
+  gethostname(hostname, HOST_NAME_MAX);
+  return hostname;
+}
+
+
 NetworkMonitor::bandwidthStruct NetworkMonitor::getBandwidth() {
   FILE* file;
   bandwidthStruct bStruct;

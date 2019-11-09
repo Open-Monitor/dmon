@@ -203,6 +203,20 @@ class TransmitPacket final :
   ::std::string* release_deviceid();
   void set_allocated_deviceid(::std::string* deviceid);
 
+  // string hostName = 13;
+  void clear_hostname();
+  static const int kHostNameFieldNumber = 13;
+  const ::std::string& hostname() const;
+  void set_hostname(const ::std::string& value);
+  #if LANG_CXX11
+  void set_hostname(::std::string&& value);
+  #endif
+  void set_hostname(const char* value);
+  void set_hostname(const char* value, size_t size);
+  ::std::string* mutable_hostname();
+  ::std::string* release_hostname();
+  void set_allocated_hostname(::std::string* hostname);
+
   // int64 MemoryUsed = 1;
   void clear_memoryused();
   static const int kMemoryUsedFieldNumber = 1;
@@ -265,6 +279,7 @@ class TransmitPacket final :
   ::google::protobuf::internal::ArenaStringPtr version_;
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::internal::ArenaStringPtr deviceid_;
+  ::google::protobuf::internal::ArenaStringPtr hostname_;
   ::google::protobuf::int64 memoryused_;
   ::google::protobuf::int64 memoryavailable_;
   ::google::protobuf::int64 memorytotal_;
@@ -690,6 +705,59 @@ inline void TransmitPacket::set_outboundbandwithpackets(::google::protobuf::int6
   
   outboundbandwithpackets_ = value;
   // @@protoc_insertion_point(field_set:hostService.TransmitPacket.OutboundBandwithPackets)
+}
+
+// string hostName = 13;
+inline void TransmitPacket::clear_hostname() {
+  hostname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& TransmitPacket::hostname() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.hostName)
+  return hostname_.GetNoArena();
+}
+inline void TransmitPacket::set_hostname(const ::std::string& value) {
+  
+  hostname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.hostName)
+}
+#if LANG_CXX11
+inline void TransmitPacket::set_hostname(::std::string&& value) {
+  
+  hostname_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:hostService.TransmitPacket.hostName)
+}
+#endif
+inline void TransmitPacket::set_hostname(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  hostname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:hostService.TransmitPacket.hostName)
+}
+inline void TransmitPacket::set_hostname(const char* value, size_t size) {
+  
+  hostname_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:hostService.TransmitPacket.hostName)
+}
+inline ::std::string* TransmitPacket::mutable_hostname() {
+  
+  // @@protoc_insertion_point(field_mutable:hostService.TransmitPacket.hostName)
+  return hostname_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* TransmitPacket::release_hostname() {
+  // @@protoc_insertion_point(field_release:hostService.TransmitPacket.hostName)
+  
+  return hostname_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TransmitPacket::set_allocated_hostname(::std::string* hostname) {
+  if (hostname != nullptr) {
+    
+  } else {
+    
+  }
+  hostname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hostname);
+  // @@protoc_insertion_point(field_set_allocated:hostService.TransmitPacket.hostName)
 }
 
 // -------------------------------------------------------------------
