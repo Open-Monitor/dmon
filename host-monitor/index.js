@@ -3,9 +3,10 @@ import {loadProto} from './lib/helpers';
 import {transmitHandler} from './lib/rpc-handlers';
 import manifest from './config/manifest';
 import {activeStateManager} from './lib/bridge';
+import io from 'socket.io';
 
+const ws = io();
 const PROTO_PATH = __dirname + '/../protos/service-guide.proto';
-
 const protoDescriptor = loadProto(PROTO_PATH);
 
 const server = new grpc.Server();
@@ -40,14 +41,10 @@ server.bind(manifest.grpc,
 console.log(`gRPC Server running at ${manifest.grpc}`);
 server.start();
 
-
-import io from 'socket.io';
-const ws = io();
-
 ws.of('/live').on('connection', async (socket) => {
-  socket.on('subscribeToLiveTransmission', async ({transmissionID}) => {
+  socket.on('subscribeToLiveTransmission', async (ips) => {
     activeStateManager.register(
-        transmissionID,
+        ips,
         (data) => {
           socket.emit(
               'liveTransmission',

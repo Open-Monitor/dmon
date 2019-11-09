@@ -19,12 +19,14 @@ class ActiveStateManager {
   }
 
   /**
-   * registers an active unit
-   * @param {any} dId
+   * registers a active units
+   * @param {any} ips
    * @param {any} cb
    */
-  register(dId, cb) {
-    this.active[dId] = cb;
+  register(ips, cb) {
+    ips.forEach((ip) => {
+      this.active[ip] = cb;
+    });
   }
 
   /**
