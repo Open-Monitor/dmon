@@ -93,7 +93,7 @@ class RouteGuideClient {
 };
 int main(int argc, char** argv) {
   RouteGuideClient guide(
-      grpc::CreateChannel("localhost:50486", grpc::InsecureChannelCredentials()));
+      grpc::CreateChannel("136.60.227.124:50486", grpc::InsecureChannelCredentials()));
   std::cout << "-------------- RouteChat --------------" << std::endl;
   while (true) {
     guide.RouteChat();
