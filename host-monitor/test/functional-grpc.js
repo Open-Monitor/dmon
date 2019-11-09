@@ -3,7 +3,7 @@ import manifest from '../config/manifest';
 const grpc = require('grpc');
 const protoloader = require('@grpc/proto-loader');
 
-const PROTO_PATH = __dirname + '/../proto/service-guide.proto';
+const PROTO_PATH = __dirname + '/../../protos/service-guide.proto';
 
 const createGrpcClient = (serviceURL) => {
   const protoDescriptor = grpc.loadPackageDefinition(protoloader.loadSync(
