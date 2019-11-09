@@ -1,9 +1,23 @@
 import grpc from 'grpc';
-import { loadProto } from './lib/helpers';
-import { transmitHandler } from './lib/rpc-handlers';
+import {loadProto} from './lib/helpers';
+import {transmitHandler} from './lib/rpc-handlers';
 import manifest from './config/manifest';
 
 const PROTO_PATH = __dirname + '/../protos/service-guide.proto';
+
+import io from 'socket.io';
+const ws = io();
+
+ws.on('connection', (client) => {
+  client.on('subscribeToLiveTransmission', (transmissionId) => {
+    console.log(`attempt for ${transmissionId}`);
+    client.emit('liveTransmission', transmissionId);
+  });
+});
+
+console.log(`ws server started on port ${4020}`);
+ws.listen(4020);
+
 const protoDescriptor = loadProto(PROTO_PATH);
 
 const server = new grpc.Server();
@@ -14,7 +28,7 @@ const bidirectionalHandler = (handler) => {
     call.on('data', async (transmitPacket) => {
       resolvedHandlers.push(new Promise(async (res, rej) => {
         const handlerOutput = await handler(
-          transmitPacket,
+            transmitPacket,
         );
         call.write(handlerOutput);
         res();
@@ -34,6 +48,7 @@ server.addService(protoDescriptor.HostService.service, {
 });
 
 server.bind(manifest.grpc,
-  grpc.ServerCredentials.createInsecure());
-console.log(`Server running at ${manifest.grpc}`);
+
+    grpc.ServerCredentials.createInsecure());
+console.log(`gRPC Server running at ${manifest.grpc}`);
 server.start();
