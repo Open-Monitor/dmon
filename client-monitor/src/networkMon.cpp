@@ -2,30 +2,21 @@
 
 NetworkMonitor::NetworkMonitor() {};
 
-NetworkMonitor::ipStruct NetworkMonitor::getIPV4Addr () {
-  struct ifaddrs* ifAddrStruct=NULL;
-  struct ifaddrs* ifa=NULL;
-  void* tmpAddrPtr=NULL;
-
-  getifaddrs(&ifAddrStruct);
-  ipStruct info;
-
-  for (ifa = ifAddrStruct; ifa != NULL; ifa = ifa->ifa_next) {
-    if (!ifa->ifa_addr) {
-      continue;
-    }
-    if (ifa->ifa_addr->sa_family == AF_INET) {
-      tmpAddrPtr=&((struct sockaddr_in*)ifa->ifa_addr)->sin_addr;
-      char addressBuffer[INET_ADDRSTRLEN];
-      inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
-      info.addr = addressBuffer;
-      info.name = ifa->ifa_name;
-      return info;
-    }
+std::string NetworkMonitor::getIPV4Addr () {
+  std::string cmd = "wget -qO - icanhazip.com 2>&1";
+  std::string data;
+  FILE* stream;
+  const int max_buffer = 12;
+  char buffer[max_buffer];
+  stream = popen(cmd.c_str(), "r");
+  if (stream) {
+    while (!feof(stream))
+      if (fgets(buffer, max_buffer, stream) != NULL)
+        data.append(buffer);
+      pclose(stream);
   }
-  if (ifAddrStruct!=NULL)
-    freeifaddrs(ifAddrStruct);
-  return info;
+  data.erase(std::remove(data.begin(), data.end(), '\n'), data.end());
+  return data;
 }
 
 std::string NetworkMonitor::getHostName(){

@@ -13,7 +13,7 @@ void printer() {
   NetworkMonitor networkMon = NetworkMonitor();
 	while (true) {
     printf("\n");
-    NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
+//    NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
     NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
     //SystemMonitor::loadStruct load = systemMon.getLoad();
     SystemMonitor::memoryStruct mem = systemMon.getMem();
@@ -33,7 +33,7 @@ void printer() {
     printf("Total CPU Useage:\t %.2f \t\t %%\n", cpu);
     printf("Total Uptime:\t\t %.2f \t Sec\n", uptime);
     printf("\n");
-    printf("IPv4 Address:\t\t %s \t %s \n", ip.addr.c_str(), ip.name.c_str());
+ //   printf("IPv4 Address:\t\t %s \t %s \n", ip.addr.c_str(), ip.name.c_str());
     printf("Bytes: %s \t\t %lld \t %lld\n", bStruct.ifname.c_str(),
         bStruct.r_bytes, bStruct.t_bytes);
     printf("Packets: %s \t %lld \t %lld\n", bStruct.ifname.c_str(),
