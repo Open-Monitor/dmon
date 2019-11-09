@@ -13,6 +13,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
 LDFLAGS = -Wall /usr/local/lib/libgrpc++.a \
+		  -lcurl \
 		  -lpthread \
 		  /usr/local/lib/libprotobuf.a \
 		  -pthread \

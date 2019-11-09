@@ -1,9 +1,9 @@
 #include <string>
-#include <ifaddrs.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 #include <unistd.h>
 #include <limits.h>
+#include <sys/types.h>
+#include <algorithm>
+
 
 class NetworkMonitor {
   public:
@@ -19,7 +19,7 @@ class NetworkMonitor {
       long long t_packets;
     };
     NetworkMonitor();
-    ipStruct getIPV4Addr();
+    std::string getIPV4Addr();
     bandwidthStruct getBandwidth();
     std::string getHostName();
 };

@@ -26,19 +26,34 @@ using hostService::HostService;
 using hostService::TransmitPacket;
 using hostService::TransmitResponse;
 
+bool initalized = false;
+std::string clientHostName;
+std::string ipAddr;
+std::string deviceID;
+
+void initStatic() {
+  NetworkMonitor networkMon = NetworkMonitor();
+
+  clientHostName = networkMon.getHostName();
+  ipAddr = networkMon.getIPV4Addr();
+  std::hash<std::string> str_hash;
+  deviceID = std::to_string(str_hash(ipAddr));
+  initalized = true;
+}
+
+
 TransmitPacket MakeTransmitPacket() {
+  if (initalized == false)
+    initStatic();
+
   NetworkMonitor networkMon = NetworkMonitor();
   SystemMonitor systemMon = SystemMonitor();
 
-  std::string hostname = networkMon.getHostName();
-
   NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
-  NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
   SystemMonitor::versionStruct vStruct = systemMon.getVersion();
   SystemMonitor::memoryStruct mem = systemMon.getMem();
-  std::hash<std::string> str_hash;
-  std::string deviceID = std::to_string(str_hash(ip.addr.c_str()));
   double x = systemMon.getCpu();
+
   TransmitPacket n;
 
   n.set_memoryused(mem.memUsed);
@@ -47,13 +62,13 @@ TransmitPacket MakeTransmitPacket() {
   n.set_cpuusage(x);
   n.set_uptime(systemMon.getUptime());
   n.set_version(vStruct.versionTag);
-  n.set_ip(ip.addr.c_str());
+  n.set_ip(ipAddr);
   n.set_deviceid(deviceID);
   n.set_inboundbandwithbytes(bStruct.r_bytes);
   n.set_outboundbandwithbytes(bStruct.t_bytes);
   n.set_inboundbandwithpackets(bStruct.r_packets);
   n.set_outboundbandwithpackets(bStruct.t_packets);
-  n.set_hostname(hostname);
+  n.set_hostname(clientHostName);
   return n;
 }
 
