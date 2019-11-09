@@ -12,7 +12,8 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
-LDFLAGS = -L/usr/local/lib `pkg-config --libs protobuf grpc++`
+LDFLAGS = `pkg-config --libs --static protobuf --static grpc++`
+#LDFLAGS = -L/usr/local/lib/libgrpc++.so /usr/local/lib/
 
 $(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
