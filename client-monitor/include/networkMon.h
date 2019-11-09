@@ -2,6 +2,8 @@
 #include <ifaddrs.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <unistd.h>
+#include <limits.h>
 
 class NetworkMonitor {
   public:
@@ -19,4 +21,5 @@ class NetworkMonitor {
     NetworkMonitor();
     ipStruct getIPV4Addr();
     bandwidthStruct getBandwidth();
+    std::string getHostName();
 };

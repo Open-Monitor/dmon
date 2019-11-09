@@ -30,6 +30,7 @@ TransmitPacket MakeTransmitPacket() {
   NetworkMonitor networkMon = NetworkMonitor();
   SystemMonitor systemMon = SystemMonitor();
 
+  std::string hostname = networkMon.getHostName();
 
   NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
   NetworkMonitor::ipStruct ip = networkMon.getIPV4Addr();
@@ -39,6 +40,7 @@ TransmitPacket MakeTransmitPacket() {
   std::string deviceID = std::to_string(str_hash(ip.addr.c_str()));
   double x = systemMon.getCpu();
   TransmitPacket n;
+
   n.set_memoryused(mem.memUsed);
   n.set_memoryavailable(mem.freeMem);
   n.set_memorytotal(mem.totalMem);
@@ -51,6 +53,7 @@ TransmitPacket MakeTransmitPacket() {
   n.set_outboundbandwithbytes(bStruct.t_bytes);
   n.set_inboundbandwithpackets(bStruct.r_packets);
   n.set_outboundbandwithpackets(bStruct.t_packets);
+  n.set_hostname(hostname);
   return n;
 }
 
