@@ -3,7 +3,7 @@ import { loadProto } from './lib/helpers';
 import { transmitHandler } from './lib/rpc-handlers';
 import manifest from './config/manifest';
 
-const PROTO_PATH = __dirname + '/proto/service-guide.proto';
+const PROTO_PATH = __dirname + '/../protos/service-guide.proto';
 const protoDescriptor = loadProto(PROTO_PATH);
 
 const server = new grpc.Server();
