@@ -1,9 +1,10 @@
 import grpc from 'grpc';
+import io from 'socket.io';
+
+import manifest from './config/manifest';
 import {loadProto} from './lib/helpers';
 import {transmitHandler} from './lib/rpc-handlers';
-import manifest from './config/manifest';
-import {activeStateManager} from './lib/bridge';
-import io from 'socket.io';
+import {liveWebSocketHandler} from './lib/ws-handlers';
 
 const ws = io();
 const PROTO_PATH = __dirname + '/../protos/service-guide.proto';
@@ -35,27 +36,12 @@ server.addService(protoDescriptor.HostService.service, {
   transmit: bidirectionalHandler(transmitHandler),
 });
 
-server.bind(manifest.grpc,
-
-    grpc.ServerCredentials.createInsecure());
-console.log(`gRPC Server running at ${manifest.grpc}`);
+server.bind(manifest.grpc, grpc.ServerCredentials.createInsecure());
 server.start();
 
-ws.of('/live').on('connection', async (socket) => {
-  socket.on('subscribeToLiveTransmission', async (ips) => {
-    activeStateManager.register(
-        ips,
-        (data) => {
-          socket.emit(
-              'liveTransmission',
-              data,
-          );
-        });
-  });
-  socket.on('disconnect', () => {
-    activeStateManager.unregister();
-  });
-});
+console.log(`gRPC Server running at ${manifest.grpc}`);
+
+ws.of('/live').on('connection', liveWebSocketHandler);
 
 console.log(`ws server started on port ${4020}`);
 ws.listen(4020);
