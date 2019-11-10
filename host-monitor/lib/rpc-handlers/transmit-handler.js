@@ -1,34 +1,30 @@
 import manifest from '../../config/manifest';
-import {unixNow} from '../helpers';
-import {activeStateManager} from '../../lib/bridge';
+import {Types} from '../../logger';
 
-import {Client} from '@elastic/elasticsearch';
-
-const client = new Client({node: manifest.elastic});
+import {unixNow, ElasticClient} from '../helpers';
+import {CLIENT_CREATED} from '../constants/elastic';
+import {liveSocketPool} from '../../lib/bridge';
 
 export default async (request) => {
-  console.log(request);
+  manifest.logger(Types.LOG, request);
+
   const updatedRequest = {
     ...request,
     IndexedOn: unixNow(),
   };
 
-  // checks if a bridge connection is requested
-  if (activeStateManager.isRegistered(request.IP)) {
-    activeStateManager.writeSocket(
-        request.IP, updatedRequest,
-    );
-  }
+  // writes to an open socket if found
+  liveSocketPool.writeSocket(
+      request.IP, updatedRequest,
+  );
 
-  const insertResp = await client.index({
-    index: 'transmissions',
-    body: {
-      ...updatedRequest,
-    },
-  });
+  const elasticResp = ElasticClient.index(
+      'transmission',
+      updatedRequest,
+  );
 
   return {
-    DidInsert: insertResp.body.result === 'created',
-    FrequencyAdjustment: 1,
+    DidInsert: elasticResp === CLIENT_CREATED,
+    FrequencyAdjustment: 1, // todo: actually compute this.
   };
 };
