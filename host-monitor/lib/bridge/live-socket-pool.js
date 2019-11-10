@@ -17,7 +17,6 @@ class LiveSocketPool {
    */
   register(socketInstance, ips, cb) {
     this.active[socketInstance] = {ips, cb};
-    console.log(this.active[socketInstance]);
   }
 
   /**
