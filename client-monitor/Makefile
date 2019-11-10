@@ -13,6 +13,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
 LDFLAGS = -Wall \
+		  -Bstatic -ljsoncpp \
 		  -Bstatic /usr/local/lib/libgrpc++.a \
 		  -Bstatic /usr/local/lib/libprotobuf.a \
 		  -Bstatic /usr/local/lib/libgrpc.a \

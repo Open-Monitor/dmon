@@ -3,17 +3,18 @@
 #include <thread>
 #include <chrono>
 
-#include <functional>
-
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
-#include <grpcpp/security/credentials.h>
 
 #include "service-guide.grpc.pb.h"
 #include "../include/networkMon.h"
 #include "../include/systemMon.h"
+
+#include <jsoncpp/json/json.h>
+#include <fstream>
+
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -149,18 +150,32 @@ class ClientMonitor {
 };
 
 
+struct Config {
+  std::string hostIP;
+  int responseTime;
+};
+Config readConfig() {
+  Config config;
+  std::ifstream ifs("config.json");
+  Json::Reader reader;
+  Json::Value obj;
+  reader.parse(ifs, obj);
+  config.hostIP = obj["hostIP"].asString();
+  config.responseTime = obj["initalResponseTime"].asInt();
+  return config;
+}
+
 
 int main(int argc, char** argv) {
-  std::string fullHostPath = "136.60.227.124:50486";
-  responsetime = 2000;
+  Config config = readConfig();
+  responsetime = config.responseTime;
 
   initSystemMonitors();
   if (initalized == false)
     std::cout << "System Monitor failed to Initalize" << std::endl;
 
-
-  ClientMonitor guide(grpc::CreateChannel(fullHostPath, grpc::InsecureChannelCredentials()));
-  std::cout << "Client Connecting to " << fullHostPath << std::endl;
+  ClientMonitor guide(grpc::CreateChannel(config.hostIP, grpc::InsecureChannelCredentials()));
+  std::cout << "Client Connecting to " << config.hostIP << std::endl;
 
   while (true) {
     guide.Stream();
