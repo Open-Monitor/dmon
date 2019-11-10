@@ -14,13 +14,10 @@ CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
 LDFLAGS = -Wall \
 		  -Bstatic /usr/local/lib/libgrpc++.a \
-		  -lpthread \
 		  -Bstatic /usr/local/lib/libprotobuf.a \
-		  -pthread \
 		  -Bstatic /usr/local/lib/libgrpc.a \
 		  -Bstatic /usr/local/lib/libgrpc++_reflection.a \
-		  -ldl \
-		  -lprotobuf \
+		  -lpthread \
 		  -lz \
 
 $(TARGET_EXEC): $(OBJS)
