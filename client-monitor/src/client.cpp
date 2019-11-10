@@ -15,7 +15,6 @@
 #include <jsoncpp/json/json.h>
 #include <fstream>
 
-
 using grpc::Channel;
 using grpc::ClientContext;
 using grpc::ClientReader;
