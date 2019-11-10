@@ -1,1 +1,1 @@
-export {default as activeStateManager} from './active-state-manager';
+export {default as liveSocketPool} from './live-socket-pool';
