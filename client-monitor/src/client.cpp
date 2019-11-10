@@ -30,92 +30,137 @@ bool initalized = false;
 std::string clientHostName;
 std::string ipAddr;
 std::string deviceID;
+NetworkMonitor networkMon;
+SystemMonitor systemMon;
 
-void initStatic() {
-  NetworkMonitor networkMon = NetworkMonitor();
+void initSystemMonitors() {
+  networkMon = NetworkMonitor();
+  systemMon = SystemMonitor();
 
   clientHostName = networkMon.getHostName();
   ipAddr = networkMon.getIPV4Addr();
   std::hash<std::string> str_hash;
   deviceID = std::to_string(str_hash(ipAddr));
+
   initalized = true;
+}
+
+TransmitPacket setStatic(TransmitPacket p) {
+  p.set_hostname(clientHostName);
+  p.set_ip(ipAddr);
+  p.set_deviceid(deviceID);
+  return p;
+}
+
+TransmitPacket setRAM(TransmitPacket p) {
+  SystemMonitor::memoryStruct mem = systemMon.getMem();
+  p.set_memoryused(mem.memUsed);
+  p.set_memoryavailable(mem.freeMem);
+  p.set_memorytotal(mem.totalMem);
+  return p;
+}
+
+TransmitPacket setNetwork(TransmitPacket p) {
+  NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
+  p.set_inboundbandwithbytes(bStruct.r_bytes);
+  p.set_outboundbandwithbytes(bStruct.t_bytes);
+  p.set_inboundbandwithpackets(bStruct.r_packets);
+  p.set_outboundbandwithpackets(bStruct.t_packets);
+  return p;
+}
+
+TransmitPacket setSystemTelemetry(TransmitPacket p) {
+  SystemMonitor::versionStruct vStruct = systemMon.getVersion();
+  double cpu = systemMon.getCpu();
+  p.set_cpuusage(cpu);
+  p.set_version(vStruct.versionTag);
+  p.set_uptime(systemMon.getUptime());
+  return p;
 }
 
 
 TransmitPacket MakeTransmitPacket() {
-  if (initalized == false)
-    initStatic();
+  TransmitPacket p;
 
-  NetworkMonitor networkMon = NetworkMonitor();
-  SystemMonitor systemMon = SystemMonitor();
+  p = setStatic(p);
+  p = setRAM(p);
+  p = setNetwork(p);
+  p = setSystemTelemetry(p);
 
-  NetworkMonitor::bandwidthStruct bStruct = networkMon.getBandwidth();
-  SystemMonitor::versionStruct vStruct = systemMon.getVersion();
-  SystemMonitor::memoryStruct mem = systemMon.getMem();
-  double x = systemMon.getCpu();
-
-  TransmitPacket n;
-
-  n.set_memoryused(mem.memUsed);
-  n.set_memoryavailable(mem.freeMem);
-  n.set_memorytotal(mem.totalMem);
-  n.set_cpuusage(x);
-  n.set_uptime(systemMon.getUptime());
-  n.set_version(vStruct.versionTag);
-  n.set_ip(ipAddr);
-  n.set_deviceid(deviceID);
-  n.set_inboundbandwithbytes(bStruct.r_bytes);
-  n.set_outboundbandwithbytes(bStruct.t_bytes);
-  n.set_inboundbandwithpackets(bStruct.r_packets);
-  n.set_outboundbandwithpackets(bStruct.t_packets);
-  n.set_hostname(clientHostName);
-  return n;
+  return p;
 }
 
-class RouteGuideClient {
+class ClientMonitor {
   public:
-    RouteGuideClient(std::shared_ptr<Channel> channel)
+    ClientMonitor(std::shared_ptr<Channel> channel)
       : stub_(HostService::NewStub(channel)) {}
 
-    void RouteChat() {
+    void Stream() {
       ClientContext context;
       std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse> > stream(
           stub_->Transmit(&context));
-
-        std::thread writer([stream]() {
-            std::vector<TransmitPacket> notes{
-              MakeTransmitPacket(),
-            };
-            for (const TransmitPacket& note : notes) {
-              std::cout << "Sending message..." << std::endl;
-            stream->Write(note);
-            }
-            stream->WritesDone();
-        });
-
-        TransmitResponse server_note;
-        while (stream->Read(&server_note)) {
-          if (server_note.didinsert() == 1)
-            std::cout << "Insertion Complete" << std::endl;
-          else
-            std::cout << "Insertion Failed" << std::endl;
-        }
-        writer.join();
-        Status status = stream->Finish();
-        if (!status.ok()) {
-          std::cout << "RouteChat rpc failed." << std::endl;
-        }
+      sendPackets(stream);
+      readResponse(stream);
+      handleStatus(stream);
     }
+
+
+    void handleStatus(std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse>> stream) {
+      Status status = stream->Finish();
+      if (!status.ok()) {
+        std::cout << "Stream rpc failed." << std::endl;
+      }
+    }
+
+
+    void sendPackets(std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse>> stream) {
+      std::thread writer([stream]() {
+              std::vector<TransmitPacket> notes{
+              MakeTransmitPacket(),
+          };
+
+          for (const TransmitPacket& note : notes) {
+            std::cout << "Sending message..." << std::endl;
+            stream->Write(note);
+          }
+
+          stream->WritesDone();
+      });
+      writer.join();
+    }
+
+
+    void readResponse(std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse>> stream) {
+      TransmitResponse server_note;
+      while (stream->Read(&server_note)) {
+        if (server_note.didinsert() == 1)
+          std::cout << "Insertion Complete \n" << std::endl;
+        else
+          std::cout << "Insertion Failed \n" << std::endl;
+      }
+    }
+
+
   private:
     std::unique_ptr<HostService::Stub> stub_;
 };
+
+
+
 int main(int argc, char** argv) {
-  RouteGuideClient guide(
-      grpc::CreateChannel("136.60.227.124:50486", grpc::InsecureChannelCredentials()));
-  std::cout << "-------------- RouteChat --------------" << std::endl;
+  std::string fullHostPath = "136.60.227.124:50486";
+  int timeOut = 2;
+
+  initSystemMonitors();
+  if (initalized == false)
+    std::cout << "System Monitor failed to Initalize" << std::endl;
+
+
+  ClientMonitor guide(grpc::CreateChannel(fullHostPath, grpc::InsecureChannelCredentials()));
+  std::cout << "Client Connecting to " << fullHostPath << std::endl;
+
   while (true) {
-    guide.RouteChat();
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    guide.Stream();
+    std::this_thread::sleep_for(std::chrono::seconds(timeOut));
   }
-  return 0;
 }
