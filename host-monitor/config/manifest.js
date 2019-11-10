@@ -2,7 +2,7 @@ import {prodLogger, devLogger} from '../logger';
 
 const manifest = (env) => ({
   grpc: ({
-    dev: 'localhost:50486',
+    dev: '192.168.1.101:50486',
     prod: '192.168.1.101:50486',
   })[env],
   elastic: ({

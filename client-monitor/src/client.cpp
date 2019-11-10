@@ -30,6 +30,7 @@ bool initalized = false;
 std::string clientHostName;
 std::string ipAddr;
 std::string deviceID;
+int responsetime;
 NetworkMonitor networkMon;
 SystemMonitor systemMon;
 
@@ -133,10 +134,12 @@ class ClientMonitor {
     void readResponse(std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse>> stream) {
       TransmitResponse server_note;
       while (stream->Read(&server_note)) {
-        if (server_note.didinsert() == 1)
+        if (server_note.didinsert() == 1) {
           std::cout << "Insertion Complete \n" << std::endl;
-        else
+          responsetime = server_note.frequencyadjustment();
+        } else {
           std::cout << "Insertion Failed \n" << std::endl;
+        }
       }
     }
 
@@ -149,7 +152,7 @@ class ClientMonitor {
 
 int main(int argc, char** argv) {
   std::string fullHostPath = "136.60.227.124:50486";
-  int timeOut = 2;
+  responsetime = 2000;
 
   initSystemMonitors();
   if (initalized == false)
@@ -161,6 +164,6 @@ int main(int argc, char** argv) {
 
   while (true) {
     guide.Stream();
-    std::this_thread::sleep_for(std::chrono::seconds(timeOut));
+    std::this_thread::sleep_for(std::chrono::milliseconds(responsetime));
   }
 }
