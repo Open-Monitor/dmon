@@ -18,7 +18,7 @@ export default async (request) => {
       request.IP, updatedRequest,
   );
 
-  const elasticResp = ElasticClient.index(
+  const elasticResp = await ElasticClient.index(
       'transmission',
       updatedRequest,
   );
