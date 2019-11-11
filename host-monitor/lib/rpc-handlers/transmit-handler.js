@@ -7,7 +7,7 @@ import {liveSocketPool} from '../../lib/bridge';
 
 export default async (request) => {
   manifest.logger(Types.LOG, request);
-
+  console.log(request);
   const updatedRequest = {
     ...request,
     IndexedOn: unixNow(),
@@ -25,6 +25,6 @@ export default async (request) => {
 
   return {
     DidInsert: elasticResp === CLIENT_CREATED,
-    FrequencyAdjustment: 1, // todo: actually compute this.
+    FrequencyAdjustment: 2000, // todo: actually compute this.
   };
 };

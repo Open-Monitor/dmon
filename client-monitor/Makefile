@@ -12,19 +12,16 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
-LDFLAGS = -Wall /usr/local/lib/libgrpc++.a \
-		  -lcurl \
+LDFLAGS = -Wall \
+		  -Bstatic /usr/local/lib/libgrpc++.a \
+		  -Bstatic /usr/local/lib/libprotobuf.a \
+		  -Bstatic /usr/local/lib/libgrpc.a \
+		  -Bstatic /usr/local/lib/libgrpc++_reflection.a \
 		  -lpthread \
-		  /usr/local/lib/libprotobuf.a \
-		  -pthread \
-		  /usr/local/lib/libgrpc.a \
-		  /usr/local/lib/libgrpc++_reflection.a \
-		  -ldl \
-		  -lprotobuf \
 		  -lz \
 
 $(TARGET_EXEC): $(OBJS)
-	$(CXX) -static $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX)  $(OBJS) -o $@ $(LDFLAGS)
 
 # assembly
 $(BUILD_DIR)/%.s.o: %.s

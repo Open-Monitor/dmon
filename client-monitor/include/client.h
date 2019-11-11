@@ -11,7 +11,7 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
-#include "../protos/service-guide.grpc.pb.h"
+#include "../src/service-guide.grpc.pb.h"
 
 using grpc::Channel;
 using grpc::ClientContext;
