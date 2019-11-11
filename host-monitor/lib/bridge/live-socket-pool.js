@@ -25,7 +25,12 @@ class LiveSocketPool {
    * @param {*} request
    */
   async writeSocket(ip, request) {
-    Object.values(this.active).forEach(({ips, cb}) => {
+    Object.values(this.active).forEach((props) => {
+      if (!props.hasOwnProperty('ips')) {
+        return;
+      }
+
+      const {ips, cb} = props;
       if (ips.includes(ip)) {
         cb(request);
       }
