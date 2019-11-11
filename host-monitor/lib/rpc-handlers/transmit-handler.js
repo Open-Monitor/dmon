@@ -7,7 +7,6 @@ import {liveSocketPool} from '../../lib/bridge';
 
 export default async (request) => {
   manifest.logger(Types.LOG, request);
-  console.log(request);
   const updatedRequest = {
     ...request,
     IndexedOn: unixNow(),
