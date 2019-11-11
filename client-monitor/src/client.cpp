@@ -12,7 +12,8 @@
 #include "../include/networkMon.h"
 #include "../include/systemMon.h"
 
-#include <jsoncpp/json/json.h>
+//#include <jsoncpp/json/json.h>
+#include "../include/json.hpp"
 #include <fstream>
 
 using grpc::Channel;
@@ -25,6 +26,7 @@ using grpc::Status;
 using hostService::HostService;
 using hostService::TransmitPacket;
 using hostService::TransmitResponse;
+using json = nlohmann::json;
 
 bool initalized = false;
 std::string clientHostName;
@@ -156,11 +158,11 @@ struct Config {
 Config readConfig() {
   Config config;
   std::ifstream ifs("config.json");
-  Json::Reader reader;
-  Json::Value obj;
-  reader.parse(ifs, obj);
-  config.hostIP = obj["hostIP"].asString();
-  config.responseTime = obj["initalResponseTime"].asInt();
+  json j;
+  ifs >> j;
+  std::cout << j["initialResponseTime"] << std::endl;
+  config.hostIP = j["hostIP"];
+  config.responseTime = j["initialResponseTime"];
   return config;
 }
 
