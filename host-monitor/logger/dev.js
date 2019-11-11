@@ -6,4 +6,3 @@ export default (type, action) => ({
   [Types.LOG]: () => console.log(action),
   [Types.WARING]: () => console.warn(action),
 })[type]();
-;
