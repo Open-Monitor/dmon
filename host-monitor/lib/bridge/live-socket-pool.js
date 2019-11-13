@@ -31,7 +31,6 @@ class LiveSocketPool {
       }
 
       const {ips, cb} = props;
-      console.log(ips);
       if (ips.includes(ip)) {
         cb(request);
       }
