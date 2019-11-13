@@ -16,6 +16,7 @@ export default async (request) => {
   liveSocketPool.writeSocket(
       request.IP, updatedRequest,
   );
+  console.log(updatedRequest);
 
   const elasticResp = await ElasticClient.index(
       'transmission',
