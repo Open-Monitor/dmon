@@ -66,7 +66,7 @@ export default ({ children }) => {
         </Navbar.Brand>
         <Navbar.Toggle className="dark-nav-toggler" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav.Item className="ml-auto">
+          <Nav.Item className="ml-auto" style={{backgroundColor: 'none !important'}}>
             <Autosuggest
               theme={theme}
               suggestions={filteredSuggestions}
@@ -78,7 +78,7 @@ export default ({ children }) => {
             />
           </Nav.Item>
           <Nav>
-            <Nav.Link href="https://github.com/Open-Monitor/dmon" target="_blank">
+            <Nav.Link className="" href="https://github.com/Open-Monitor/dmon" target="_blank">
               <img src={process.env.PUBLIC_URL + '/GitHub-Mark-Light-32px.png'} alt="Github Link" />
             </Nav.Link>
           </Nav>
