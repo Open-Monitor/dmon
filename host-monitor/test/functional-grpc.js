@@ -28,7 +28,7 @@ const TRANSMIT_PACKETS = [{
   MemoryUsed: 11,
   MemoryAvailable: 22,
   MemoryTotal: 33,
-
+  hostName: 'some host',
   CpuUsage: 4.0,
   UpTime: 5.0,
 
