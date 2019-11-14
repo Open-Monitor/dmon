@@ -3,7 +3,7 @@
 NetworkMonitor::NetworkMonitor() {};
 
 std::string NetworkMonitor::getIPV4Addr () {
-  std::string cmd = "wget -qO - icanhazip.com 2>&1";
+  std::string cmd = "wget -qO - ipv4.icanhazip.com 2>&1";
   std::string data;
   FILE* stream;
   const int max_buffer = 12;

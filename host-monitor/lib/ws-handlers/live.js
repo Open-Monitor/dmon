@@ -4,7 +4,6 @@ import {liveSocketPool} from '../bridge';
 
 export default async (socket) => {
   const connectionInstance = uuid.v4();
-
   socket.on('subscribeToLiveTransmission', async (ips) => {
     liveSocketPool.register(
         connectionInstance,

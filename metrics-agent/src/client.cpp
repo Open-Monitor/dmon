@@ -12,7 +12,6 @@
 #include "../include/networkMon.h"
 #include "../include/systemMon.h"
 
-//#include <jsoncpp/json/json.h>
 #include "../include/json.hpp"
 #include <fstream>
 
@@ -160,7 +159,6 @@ Config readConfig() {
   std::ifstream ifs("config.json");
   json j;
   ifs >> j;
-  std::cout << j["initialResponseTime"] << std::endl;
   config.hostIP = j["hostIP"];
   config.responseTime = j["initialResponseTime"];
   return config;
