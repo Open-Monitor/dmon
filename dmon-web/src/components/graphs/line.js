@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Line } from 'react-chartjs-2';
 
-export default ({ colors, data, hostName }) => (
+export default ({ colors, data, hostName, fill }) => (
     <Line data={{
         labels: [
           new Date(Date.now() - 1000* (60*10)).toLocaleTimeString(),
@@ -15,10 +15,10 @@ export default ({ colors, data, hostName }) => (
             const rgb = colors[dataKey];
             return ({
                 label: hostName[dataKey][0],
-                fill: false,
+                fill: fill,
                 backgroundColor: `rgb(${rgb},0.2)`,
                 borderColor: `rgb(${rgb},1)`,
-                borderWidth: 1,
+                borderWidth: 2,
                 hoverBackgroundColor: `rgb(${rgb},0.4)`,
                 hoverBorderColor: `rgb(${rgb},1)`,
                 data: data[dataKey],

@@ -25,6 +25,7 @@ export default () => {
         <GraphContainer title="Cpu" info="Percentage of usage on all cores.">
           <LineGraph
             colors={colors}
+            fill={true}
             data={transmissionPackets.CpuUsage}
             hostName={transmissionPackets.hostName}
             title="Cpu"
@@ -33,6 +34,7 @@ export default () => {
         <GraphContainer title="Memory Usage" info="Memory usage is measured in KiloBytes.">
           <LineGraph
             colors={colors}
+            fill={false}
             data={transmissionPackets.MemoryUsed}
             hostName={transmissionPackets.hostName}
             title="MemoryUsed"

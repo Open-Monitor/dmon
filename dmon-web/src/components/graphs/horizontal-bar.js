@@ -23,16 +23,16 @@ export default ({ colors, data, hostName, barLabels}) => (
         scales: {
             xAxes: [{
                 gridLines: {
-                    display: false,
-                },
-            }],
-            yAxes: [{
-                gridLines: {
                     display: true,
                     color: 'rgba(45,50,73,1)',
                     lineWidth: 2,
                     drawTicks: false,
                     drawBorder: false,
+                },
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false,
                 },
             }],
         }

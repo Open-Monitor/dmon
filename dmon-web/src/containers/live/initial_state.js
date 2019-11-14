@@ -2,6 +2,8 @@ export default {
   CpuUsage: {},
   UpTime: {},
   MemoryUsed: {},
+  MemoryAvailable: {},
+  MemoryTotal: {},
   InboundBandwithBytes: {},
   OutboundBandwithBytes: {},
   InboundBandwithPackets: {},

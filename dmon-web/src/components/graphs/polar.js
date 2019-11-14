@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Polar } from 'react-chartjs-2';
 
-export default ({ colors, data, hostName, barLabels }) => (
+export default ({ colors, data, data2, data3, hostName, barLabels }) => (
     <Polar data={{
         labels: barLabels||[],
         datasets: Object.keys(data).map(dataKey => {
