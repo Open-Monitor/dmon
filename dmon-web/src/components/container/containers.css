@@ -1,0 +1,13 @@
+.tableRow {
+    cursor: pointer;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(255,255,255, 0.7) !important;
+    color: black;
+}
+.btn-link {
+    color: white !important;
+}
+.btn-link:hover {
+    color: grey !important;
+}

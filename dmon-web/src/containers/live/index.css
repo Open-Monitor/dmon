@@ -1,0 +1,53 @@
+.main-cont {
+    background-color: #1c1e2f;
+}
+
+::-webkit-scrollbar {
+    display:none;
+}
+.dark-card {
+    background-color: #222437 !important;
+    border-radius: 2px !important;
+    box-shadow: 0 2px 2px 0 #181a27;
+}
+.dark-card-header {
+    color: white;
+    background-color: transparent !important;
+    border: none !important;
+}
+.dark-card-header h1 {
+    color: white;
+    letter-spacing: 3px;
+    margin-bottom: 0px;
+}
+
+.bcrumbs {
+    padding-left: 2rem;
+}
+
+.breadcrumb {
+    margin-bottom: 0px !important;
+    background-color: #222437 !important;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.bcrumb-item-false a {
+    color: white;
+    cursor: default;
+}
+.bcrumb-item-false:hover a {
+    color: white;
+    text-decoration: none;
+}
+
+.bcrumb-item a {
+    color: white;
+}
+
+
+.bcrumb-item:hover a {
+    color: rgba(255,255,255, 0.4);
+    text-decoration: none;
+}

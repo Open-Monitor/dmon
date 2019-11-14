@@ -1,0 +1,90 @@
+.dark-nav {
+   background-color:  #222437;
+   color: #fff;
+   //box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.dark-nav-toggler {
+    border-color: transparent !important;
+}
+
+.dark-nav-toggler:focus {
+    outline: 0px;
+}
+
+.sideBar {
+    height: 100%;
+    width: 270px;
+    min-width: 270px;
+    z-index: 1050;
+    background-color: white;
+    padding-top: 64px;
+    background: linear-gradient(to top, #222437, #222437);
+    color: white;
+}
+
+
+#page-wrap {
+    width:100%;
+    display: flex;
+    align-items: stretch;
+}
+.nav-profile {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-profile-inner {
+    border: 1px solid rgba(255,255,255, 0.11);
+    border-radius: 3px;
+    padding: 15px 25px;
+    letter-spacing: 2px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.nav-item:hover {
+    background-color: rgba(255,255,255,0.5);
+}
+.nav-category.nav-item {
+   color: rgba(255, 255, 255, 0.7);
+   border-bottom: 1px solid rgba(255,255,255, 0.13);
+   margin: 0 30px;
+   font-size: 15px;
+   font-weight: bold;
+   padding: 10px 0px 15px 0px;
+   background-color: transparent !important;
+}
+
+
+.sideBar > .nav > .nav-item > .nav-link {
+    height: 52px;
+}
+
+.sideBar > .nav .nav-item .nav-link {
+    align-items: center;
+    padding: 15px 30px 15px 40px;
+    white-space: nowrap;
+    color: white;
+}
+.sideBar > .nav .nav-item:hover .nav-link {
+    color: black;
+}
+.sideBar > .nav .nav-item:hover .nav-link svg{
+    color: black;
+}
+
+.sideBar > .nav .nav-item .nav-link .menu-title {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 1;
+    vertical-align: middle;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.fa-circle {
+    color: rgba(255,255,255, 0.5);
+}
