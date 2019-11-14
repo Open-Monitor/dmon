@@ -1,9 +1,9 @@
 import manifest from '../../config/manifest';
 
-import {Client} from '@elastic/elasticsearch';
-import {CLIENT_FAILED} from '../constants/elastic';
+import { Client } from '@elastic/elasticsearch';
+import { CLIENT_FAILED } from '../constants/elastic';
 
-const client = new Client({node: manifest.elastic});
+const client = new Client({ node: manifest.elastic });
 
 export const index = async (index, request) => {
   try {
@@ -16,7 +16,7 @@ export const index = async (index, request) => {
 
     return resp.body.result;
   } catch (e) {
-    manifest.logger('error', e);
+    // manifest.logger('error', e);
     return CLIENT_FAILED;
   }
 };
