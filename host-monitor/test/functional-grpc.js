@@ -35,7 +35,7 @@ const TRANSMIT_PACKETS = [{
   DeviceID: 'example_device',
 
   Version: 'basic',
-  IP: 'duh',
+  IP: 'duh2',
 
   InboundBandwith: 2,
   OutboundBandwith: 9,

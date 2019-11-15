@@ -1,6 +1,6 @@
 import React, { useState, createContext, useMemo } from 'react';
 
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import Autosuggest from 'react-autosuggest';
 
 import './header.css';

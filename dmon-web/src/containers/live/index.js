@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext, useEffect } from 'react';
 
-import { Breadcrumb, Container, Row } from 'react-bootstrap'
+import { Breadcrumb, Container, Row } from 'react-bootstrap';
 
 import useLive from './useLive';
 import context from './context';
@@ -48,7 +48,9 @@ export default ({ match: { params }, history }) => {
       ...updateTransmissionPacket(prev, packet, stateKeys),
     }))
   },
-    !!params.ip ? [params.ip] : ips,
+    // this in a way is a "hack", the server will
+    // return us everything if the ips array is empty
+    !!params.ip ? [params.ip] : [], 
     [transmissionPackets, params.id]
   );
 
