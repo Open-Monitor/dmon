@@ -6,7 +6,6 @@ import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 
 import './containers.css'
 
-
 export default ({ title, data, hostName, deviceID }) => (
       <Col className="mx-auto mt-3" sm={12}>
         <Accordion defaultActiveKey="0">

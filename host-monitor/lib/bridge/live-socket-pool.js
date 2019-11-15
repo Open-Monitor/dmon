@@ -24,7 +24,9 @@ class LiveSocketPool {
    */
   async writeSocket(request) {
     Object.values(this.active).forEach((cb) => {
-      cb(request);
+      if (typeof cb === 'function') {
+        cb(request);
+      }
     });
   }
 
