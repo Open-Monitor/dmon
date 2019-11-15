@@ -13,6 +13,7 @@ import { autoSuggestContext } from '../../components/layout/header';
 export default ({ match: { params }, history }) => {
   const [transmissionPackets, setTransmissionPackets] = useState(INITIAL_TRANSMISSION_STATE); // todo: might want to change out this state for reducers.
   const [colors, setColors] = useState([]);
+  const [ips, setIps] = useState([]);
 
   const stateKeys = useMemo(
     () => Object.keys(INITIAL_TRANSMISSION_STATE),
@@ -23,14 +24,8 @@ export default ({ match: { params }, history }) => {
   useEffect(() => {
     setHandlerCb({
       fn: (item) => history.push(`/live/${item}`)
-    });    
+    });
   }, [])
-
-  const ips = useMemo(() => Object.keys(transmissionPackets.CpuUsage),
-    [
-      Object.keys(transmissionPackets.CpuUsage)
-    ]
-  )
 
   useEffect(() => {
     updateSuggestions(ips.map(x => ({
@@ -44,6 +39,10 @@ export default ({ match: { params }, history }) => {
     ) ? { ...prev, [packet.IP]: generateRgb() }
       : prev
     );
+
+    setIps(prev => (~~prev.indexOf(packet.IP) ? [
+      ...prev, packet.IP,
+    ] : prev));
 
     setTransmissionPackets(prev => ({
       ...updateTransmissionPacket(prev, packet, stateKeys),
