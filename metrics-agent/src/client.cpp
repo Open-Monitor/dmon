@@ -122,7 +122,6 @@ class ClientMonitor {
           };
 
           for (const TransmitPacket& note : notes) {
-            std::cout << "Sending message..." << std::endl;
             stream->Write(note);
           }
 
@@ -136,10 +135,10 @@ class ClientMonitor {
       TransmitResponse server_note;
       while (stream->Read(&server_note)) {
         if (server_note.didinsert() == 1) {
-          std::cout << "Insertion Complete \n" << std::endl;
+          std::cout << "Message insertion successful" << std::endl;
           responsetime = server_note.frequencyadjustment();
         } else {
-          std::cout << "Insertion Failed \n" << std::endl;
+          std::cout << "Message failed insertion (check that elastic search is running)" << std::endl;
         }
       }
     }
