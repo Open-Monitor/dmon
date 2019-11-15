@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Container, Row } from 'react-bootstrap';
 
 import { GraphContainer, UptimeContainer } from '../../components/container';
-import { LineGraph, HorizontalBarGraph } from '../../components/graphs';
+import { LineGraph, HorizontalBarGraph, BarGraph } from '../../components/graphs';
 import context from './context';
 
 import './index.css';
@@ -32,7 +32,7 @@ export default () => {
           />
         </GraphContainer>
         <GraphContainer title="Memory Usage" info="Memory usage is measured in KiloBytes.">
-          <LineGraph
+          <BarGraph
             colors={colors}
             fill={false}
             data={transmissionPackets.MemoryUsed}

@@ -1,7 +1,7 @@
 .dark-nav {
    background-color:  #222437;
    color: #fff;
-   //box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
 }
 
 .dark-nav-toggler {

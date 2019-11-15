@@ -9,7 +9,7 @@ export default (Component) => {
   return (props) => (
     <div className="" id="page-wrap">
       <Header style={{ position: 'absolute' }}>
-        <SideNav />
+      {/*<SideNav />*/}
         <Component {...props} />
       </Header>
     </div>
