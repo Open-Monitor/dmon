@@ -154,8 +154,9 @@ class ClientMonitor {
 
 int main(int argc, char** argv) {
   responsetime = 2000;
-  std::string hostIP;
-  hostIP = argv[1];
+  std::string hostIP = "localhost:50486";
+  if (argv[1] != NULL)
+    hostIP = argv[1];
 
 
   initSystemMonitors();

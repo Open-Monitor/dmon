@@ -18,6 +18,7 @@ LDFLAGS = -Wall \
 		  -Bstatic /usr/local/lib/libgrpc.a \
 		  -Bstatic /usr/local/lib/libgrpc++_reflection.a \
 		  -lpthread \
+		  -Bstatic /usr/lib/x86_64-linux-gnu/libstdc++.so.6 \
 		  -lz \
 
 $(TARGET_EXEC): $(OBJS)
