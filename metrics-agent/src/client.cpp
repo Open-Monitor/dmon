@@ -155,8 +155,7 @@ class ClientMonitor {
 int main(int argc, char** argv) {
   responsetime = 2000;
   std::string hostIP;
-  for (int i=0; i<argc; i++)
-    hostIP = argv[i];
+  hostIP = argv[1];
 
 
   initSystemMonitors();
