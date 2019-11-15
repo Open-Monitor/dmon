@@ -2,7 +2,6 @@ import React, { useState, useMemo, useContext, useEffect } from 'react';
 
 import { Breadcrumb, Container, Row } from 'react-bootstrap'
 
-import ips from '../../config.js'
 import useLive from './useLive';
 import context from './context';
 import INITIAL_TRANSMISSION_STATE from './initial_state';
