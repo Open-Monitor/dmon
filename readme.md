@@ -53,7 +53,7 @@ You may run into some issues with getting three different services set up.
     1. If you are running both services on a local device. Make sure the ip's are `localhost:50486` and port 50486 is open.
     2. If you are running the host-service on your local device and the ./client on an external machine. Please check the section above. It is important that you have opened and forwared a port in your router configuration. The port-forwarding rule should take your public IP -> computer's local IP. The client's configuration should contain your host-monitor's public IP and open Port.
 2. The host-monitor, or web-client are failing to start.
-    1. The most common issue is missing dependencies, remember to run `npm` in in their respective folders.
+    1. The most common issue is missing dependencies, remember to run `npm i` in in their respective folders.
 3. The ./client is missing XX library.
     1. Most of the libraries that are required are statically linked (grpc, protobufs, pthread) but you system may be missing some. Look up information regarding installing the specifc library. If all else fails, please open an issue.
 
@@ -63,3 +63,4 @@ If non of the above are related to your issue, feel free to open an issue.
 View deployment model [here](./docs/deployment-model.md)
 
 ### Contributing
+Contributions are greatly encouraged. Please make a pull-request.
