@@ -23,12 +23,20 @@ export default ({ match: { params }, history }) => {
   useEffect(() => {
     setHandlerCb({
       fn: (item) => history.push(`/live/${item}`)
-    });
+    });    
+  }, [])
 
+  const ips = useMemo(() => Object.keys(transmissionPackets.CpuUsage),
+    [
+      Object.keys(transmissionPackets.CpuUsage)
+    ]
+  )
+
+  useEffect(() => {
     updateSuggestions(ips.map(x => ({
       name: x,
     })))
-  }, [])
+  }, [ips])
 
   useLive((packet) => {
     setColors(prev => (
