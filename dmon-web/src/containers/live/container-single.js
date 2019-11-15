@@ -52,16 +52,18 @@ export default () => {
           />
         </GraphContainer>
         <GraphContainer title="Inbound Packets" info="Total number of packets received by the server.">
-          <HorizontalBarGraph
+          <LineGraph
             colors={colors}
+            fill={true}
             data={transmissionPackets.InboundBandwithPackets}
             hostName={transmissionPackets.hostName}
             title="Outbound Packets"
           />
         </GraphContainer>
         <GraphContainer title="Outbound Packets"info="Total number of packets sent from the server.">
-          <HorizontalBarGraph
+          <LineGraph
             colors={colors}
+            fill={true}
             data={transmissionPackets.OutboundBandwithPackets}
             hostName={transmissionPackets.hostName}
             title="Outbound Packets"
