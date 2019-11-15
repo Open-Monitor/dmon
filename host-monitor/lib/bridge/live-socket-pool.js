@@ -12,28 +12,19 @@ class LiveSocketPool {
   /**
    * registers a active units
    * @param {any} socketInstance
-   * @param {any} ips
    * @param {any} cb
    */
-  register(socketInstance, ips, cb) {
-    this.active[socketInstance] = {ips, cb};
+  register(socketInstance, cb) {
+    this.active[socketInstance] = cb;
   }
 
   /**
    * writes to open socket
-   * @param {*} ip
    * @param {*} request
    */
-  async writeSocket(ip, request) {
-    Object.values(this.active).forEach((props) => {
-      if (props === undefined) {
-        return;
-      }
-
-      const {ips, cb} = props;
-      if (ips.includes(ip)) {
-        cb(request);
-      }
+  async writeSocket(request) {
+    Object.values(this.active).forEach((cb) => {
+      cb(request);
     });
   }
 

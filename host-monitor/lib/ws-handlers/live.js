@@ -7,7 +7,6 @@ export default async (socket) => {
   socket.on('subscribeToLiveTransmission', async (ips) => {
     liveSocketPool.register(
         connectionInstance,
-        ips,
         (data) => {
           socket.emit(
               'liveTransmission',

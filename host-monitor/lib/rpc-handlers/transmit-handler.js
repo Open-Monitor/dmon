@@ -14,9 +14,8 @@ export default async (request) => {
 
   // writes to an open socket if found
   liveSocketPool.writeSocket(
-      request.IP, updatedRequest,
+      updatedRequest,
   );
-  console.log(updatedRequest);
 
   const elasticResp = await ElasticClient.index(
       'transmission',
