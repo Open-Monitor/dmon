@@ -139,6 +139,7 @@ class ClientMonitor {
           responsetime = server_note.frequencyadjustment();
         } else {
           std::cout << "Message failed insertion (check that elastic search is running)" << std::endl;
+          responsetime = server_note.frequencyadjustment();
         }
       }
     }
