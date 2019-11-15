@@ -150,31 +150,21 @@ class ClientMonitor {
 };
 
 
-struct Config {
-  std::string hostIP;
-  int responseTime;
-};
-Config readConfig() {
-  Config config;
-  std::ifstream ifs("config.json");
-  json j;
-  ifs >> j;
-  config.hostIP = j["hostIP"];
-  config.responseTime = j["initialResponseTime"];
-  return config;
-}
 
 
 int main(int argc, char** argv) {
-  Config config = readConfig();
-  responsetime = config.responseTime;
+  responsetime = 2000;
+  std::string hostIP;
+  for (int i=0; i<argc; i++)
+    hostIP = argv[i];
+
 
   initSystemMonitors();
   if (initalized == false)
     std::cout << "System Monitor failed to Initalize" << std::endl;
 
-  ClientMonitor guide(grpc::CreateChannel(config.hostIP, grpc::InsecureChannelCredentials()));
-  std::cout << "Client Connecting to " << config.hostIP << std::endl;
+  ClientMonitor guide(grpc::CreateChannel(hostIP, grpc::InsecureChannelCredentials()));
+  std::cout << "Client Connecting to " << hostIP << std::endl;
 
   while (true) {
     guide.Stream();
