@@ -4,7 +4,7 @@ import { Col, Card } from 'react-bootstrap';
 
 export default ({ title, info, children }) => (
     <Col className="mx-auto mt-3" sm={6}>
-        <Card className="dark-card text-left">
+        <Card className="dark-card text-left mt-3">
             <Card.Header className="dark-card-header ml-2">
                 <h3 className="mb-0 text-uppercase">{title}</h3>
                 <p className="mt-2">{info}</p>

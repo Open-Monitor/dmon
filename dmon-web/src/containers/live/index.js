@@ -48,9 +48,9 @@ export default ({ match: { params }, history }) => {
 
   return (
     <React.Fragment>
-      <Container fluid className="main-cont mt-5" style={{ paddingTop: '2rem' }}>
+      <Container fluid className="main-cont pt-5 pb-4" style={{ marginTop: '2rem' }}>
         <Row>
-          <Breadcrumb className="bcrumbs">
+          <Breadcrumb className="bcrumbs my-2">
             <Breadcrumb.Item className="bcrumb-item-false" href={params.ip === undefined ? undefined : "/"}>Home</Breadcrumb.Item>
             <Breadcrumb.Item className="bcrumb-item" href={params.ip === undefined ? undefined : "/live"}>Live</Breadcrumb.Item>
             <Breadcrumb.Item className="bcrumb-item">

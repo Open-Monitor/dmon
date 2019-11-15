@@ -9,13 +9,15 @@ import './header.css';
 
 export default () => (
   <div>
-    <div className="sideBar">
+    <div className="sideBar d-none d-sm-flex">
       <Nav className="flex-column pt-3">
         <NavItem className="text-center nav-profile">
+          <Nav.Link href="/live">
           <h4 className="nav-profile-inner mb-0">
             <FontAwesomeIcon icon={faSignal} className="mr-2" />
             <span>Live</span>
           </h4>
+          </Nav.Link>
         </NavItem>
         <NavItem className="nav-category mt-3">
           <span>Main Menu</span>
