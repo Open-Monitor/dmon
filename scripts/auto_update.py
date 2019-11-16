@@ -41,7 +41,7 @@ def download(url, release, ip):
     if was_killed:
         print("Old process was killed, now restarting...")
     try:
-        subprocess.Popen(['nohup', './client', ip, '&'])
+        subprocess.Popen(['nohup', './client', ip])
     except Exception as e:
         print("Failed to start:", str(e))
 
