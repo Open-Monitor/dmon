@@ -31,6 +31,7 @@ def try_kill(r):
 
 def download(url, release, ip):
     print("Dowloading new release...")
+    print(url);
     update_running(release)
 
     req = requests.get(url, allow_redirects=True)
