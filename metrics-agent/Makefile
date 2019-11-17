@@ -7,7 +7,7 @@ SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.cc)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_DIRS := $(shell find $(SRC_DIRS) -type d) ./include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
@@ -21,7 +21,7 @@ LDFLAGS = -Wall \
 		  -lz \
 
 $(TARGET_EXEC): $(OBJS)
-	$(CXX)  $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 # assembly
 $(BUILD_DIR)/%.s.o: %.s
