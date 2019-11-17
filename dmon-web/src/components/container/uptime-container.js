@@ -6,7 +6,7 @@ import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 
 import './containers.css'
 
-export default ({ title, data, hostName, deviceID }) => (
+export default ({ title, data, hostName, deviceID, clientVersion }) => (
       <Col className="mx-auto mt-3" sm={12}>
         <Accordion defaultActiveKey="0">
         <Card className="dark-card text-left">
@@ -30,6 +30,7 @@ export default ({ title, data, hostName, deviceID }) => (
                     <th style={{borderTop: 'none'}}>UpTime (sec)</th>
                     <th style={{borderTop: 'none'}}>IP (IPV4)</th>
                     <th style={{borderTop: 'none'}}>ID</th>
+                    <th style={{borderTop: 'none'}}>Client Version</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@ export default ({ title, data, hostName, deviceID }) => (
                     <td>{data[dataKey].slice(-1)[0]}</td>
                     <td>{dataKey.replace(/(?:\.\d+){2}$/, '')+".*.*"}</td>
                     <td>{Object.values(deviceID)[index][0]}</td>
+                    <td>{Object.values(clientVersion)[index][0]}</td>
                   </tr>
                 )}
                 </tbody>

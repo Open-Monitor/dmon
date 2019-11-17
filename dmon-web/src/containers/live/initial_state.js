@@ -1,4 +1,5 @@
 export default {
+  ClientVersion: {},
   CpuUsage: {},
   UpTime: {},
   MemoryUsed: {},

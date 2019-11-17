@@ -17,5 +17,6 @@ export default {
     OutboundBandwithPackets: {},
     hostName: {},
     DeviceID: {},
+    ClientVersion: {},
   }
 }

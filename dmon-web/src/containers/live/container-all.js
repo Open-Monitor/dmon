@@ -19,6 +19,7 @@ export default () => {
           hostName={transmissionPackets.hostName}
           deviceID={transmissionPackets.DeviceID}
           data={transmissionPackets.UpTime}
+          clientVersion={transmissionPackets.ClientVersion}
         />
       </Row>
       <Row className="">

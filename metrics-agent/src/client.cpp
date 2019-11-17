@@ -29,6 +29,8 @@ using hostService::TransmitProcesses;
 using hostService::TransmitProcessesResponse;
 using json = nlohmann::json;
 
+std::string CLIENT_VERSION = "1.0.1";
+
 bool initalized = false;
 std::string clientHostName;
 std::string ipAddr;
@@ -53,6 +55,7 @@ TransmitPacket setStatic(TransmitPacket p) {
   p.set_hostname(clientHostName);
   p.set_ip(ipAddr);
   p.set_deviceid(deviceID);
+  p.set_clientversion(CLIENT_VERSION);
   return p;
 }
 

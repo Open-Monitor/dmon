@@ -24,6 +24,7 @@ message TransmitPacket {
     int64 InboundBandwithPackets = 11;
     int64 OutboundBandwithPackets = 12;
     string hostName = 13;
+    string ClientVersion = 14;
 }
 
 message TransmitProcesses {
