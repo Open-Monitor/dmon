@@ -31,8 +31,21 @@ const bidirectionalHandler = (handler) => {
     });
   };
 };
+// transmit { request deserialize }
 
-server.addService(protoDescriptor.HostService.service, {
+server.addService({
+  ...protoDescriptor.HostService.service, Transmit: {
+    ...protoDescriptor.HostService.service.Transmit,
+    requestDeserialize: () => ({
+      raw,
+      marshalRequest: protoDescriptor
+          .HostService
+          .service
+          .Transmit
+          .requestDeserialize,
+    }),
+  },
+}, {
   transmit: bidirectionalHandler(transmitHandler),
 });
 
