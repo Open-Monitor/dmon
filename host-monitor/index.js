@@ -12,33 +12,31 @@ const protoDescriptor = loadProto(PROTO_PATH);
 
 const server = new grpc.Server();
 
-const bidirectionalHandler = (handler) => {
-  return (call) => {
-    const resolvedHandlers = [];
-    call.on('data', async (transmitPacket) => {
-      resolvedHandlers.push(new Promise(async (res, rej) => {
-        const handlerOutput = await handler(
-            transmitPacket,
-        );
-        call.write(handlerOutput);
-        res();
-      }));
-    });
-    call.on('end', async () => {
-      await Promise.all(resolvedHandlers);
+const bidirectionalHandler = (handler) => (call) => {
+  const resolvedHandlers = [];
+  call.on('data', async (transmitPacket) => {
+    resolvedHandlers.push(new Promise(async (res) => {
+      const handlerOutput = await handler(
+          transmitPacket,
+      );
+      call.write(handlerOutput);
+      res();
+    }));
+  });
+  call.on('end', async () => {
+    await Promise.all(resolvedHandlers);
 
-      call.end();
-    });
-  };
+    call.end();
+  });
 };
-// transmit { request deserialize }
 
 server.addService({
-  ...protoDescriptor.HostService.service, Transmit: {
+  ...protoDescriptor.HostService.service,
+  Transmit: {
     ...protoDescriptor.HostService.service.Transmit,
-    requestDeserialize: () => ({
+    requestDeserialize: (raw) => ({
       raw,
-      marshalRequest: protoDescriptor
+      marshalCb: protoDescriptor
           .HostService
           .service
           .Transmit
