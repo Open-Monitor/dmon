@@ -98,7 +98,6 @@ std::string* SystemMonitor::getProcesses() {
   for (unsigned int i=0; i<10; i++) {
       line = processes[i].erase(processes[i].size() - 1);
       processes[i] = line;
-      std::cout << processes[i] << std::endl;
   }
   return processes;
 }
