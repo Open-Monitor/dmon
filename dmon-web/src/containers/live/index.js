@@ -1,23 +1,26 @@
-import React, { useState, useMemo, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 
 import { Breadcrumb, Container, Row } from 'react-bootstrap';
 
+import LiveTransmissionReducer from '../../reducers/live-transmissions';
+import INITIAL_STATE, {
+  PUSH_PACKET,
+  APPLY_IP,
+  APPLY_COLOR,
+} from '../../constants/live-transmission';
+
 import useLive from './useLive';
 import context from './context';
-import INITIAL_TRANSMISSION_STATE from './initial_state';
-import { generateRgb, updateTransmissionPacket } from '../../helpers';
 import Single from './container-single';
 import All from './container-all';
 import { autoSuggestContext } from '../../components/layout/header';
 
-export default ({ match: { params }, history }) => {
-  const [transmissionPackets, setTransmissionPackets] = useState(INITIAL_TRANSMISSION_STATE); // todo: might want to change out this state for reducers.
-  const [colors, setColors] = useState([]);
-  const [ips, setIps] = useState([]);
+const PACKET_ACTIONS = [PUSH_PACKET, APPLY_IP, APPLY_COLOR];
 
-  const stateKeys = useMemo(
-    () => Object.keys(INITIAL_TRANSMISSION_STATE),
-    [INITIAL_TRANSMISSION_STATE]
+export default ({ match: { params }, history }) => {
+  const [{ ips, colors, packetInfo }, dispatch] = useReducer(
+    LiveTransmissionReducer,
+    INITIAL_STATE,
   );
 
   const { updateSuggestions, setHandlerCb } = useContext(autoSuggestContext);
@@ -33,52 +36,35 @@ export default ({ match: { params }, history }) => {
     })))
   }, [ips])
 
-  useLive((packet) => {
-    setColors(prev => (
-      prev[packet.IP] === undefined
-    ) ? { ...prev, [packet.IP]: generateRgb() }
-      : prev
-    );
-
-    setIps(prev => (~~prev.indexOf(packet.IP) ? [
-      ...prev, packet.IP,
-    ] : prev));
-
-    setTransmissionPackets(prev => ({
-      ...updateTransmissionPacket(prev, packet, stateKeys),
-    }))
-  },
+  useLive((packet) => PACKET_ACTIONS
+    .forEach(action => dispatch({ type: action, payload: packet })),
     // this in a way is a "hack", the server will
     // return us everything if the ips array is empty
-    !!params.ip ? [params.ip] : [], 
-    [transmissionPackets, params.id]
+    !!params.ip ? [params.ip] : [],
+    [packetInfo, params.id]
   );
 
   return (
-    <React.Fragment>
-      <Container fluid className="main-cont pt-5 pb-4" style={{ marginTop: '2rem' }}>
-        <Row>
-          <Breadcrumb className="bcrumbs my-2">
-            <Breadcrumb.Item className="bcrumb-item-false" href={params.ip === undefined ? undefined : "/"}>Home</Breadcrumb.Item>
-            <Breadcrumb.Item className="bcrumb-item" href={params.ip === undefined ? undefined : "/live"}>Live</Breadcrumb.Item>
-            <Breadcrumb.Item className="bcrumb-item">
-              {
-                params.ip
-              }
-            </Breadcrumb.Item>
-          </Breadcrumb>
-        </Row>
-        <context.Provider value={{ transmissionPackets, colors }}>
-          {
+    <Container fluid className="main-cont pt-5 pb-4" style={{ marginTop: '2rem' }}>
+      <Row>
+        <Breadcrumb className="bcrumbs my-2">
+          <Breadcrumb.Item className="bcrumb-item-false" href={params.ip === undefined ? undefined : "/"}>Home</Breadcrumb.Item>
+          <Breadcrumb.Item className="bcrumb-item" href={params.ip === undefined ? undefined : "/live"}>Live</Breadcrumb.Item>
+          <Breadcrumb.Item className="bcrumb-item">
             {
-              [true || params.ip === undefined]: <All />,
-              [params.ip !== undefined]: <Single focused={params.ip} />
-            }.true
-          }
-        </context.Provider>
-      </Container>
-
-    </React.Fragment>
-
+              params.ip
+            }
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Row>
+      <context.Provider value={{ transmissionPackets: packetInfo, colors }}>
+        {
+          {
+            [true || params.ip === undefined]: <All />,
+            [params.ip !== undefined]: <Single focused={params.ip} />
+          }.true
+        }
+      </context.Provider>
+    </Container>
   )
 }
