@@ -10,6 +10,7 @@ export default (state, { type, payload }) => ({
   [PUSH_PACKET]: () => ({
     ...state,
     packetInfo: {
+      // this func handles the shifting as well
       ...updateTransmissionPacket(state.packetInfo, payload, PACKET_KEYS),
     },
   }),
