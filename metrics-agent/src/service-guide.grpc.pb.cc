@@ -20,6 +20,7 @@ namespace hostService {
 
 static const char* HostService_method_names[] = {
   "/hostService.HostService/Transmit",
+  "/hostService.HostService/Processes",
 };
 
 std::unique_ptr< HostService::Stub> HostService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -30,6 +31,7 @@ std::unique_ptr< HostService::Stub> HostService::NewStub(const std::shared_ptr< 
 
 HostService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_Transmit_(HostService_method_names[0], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+  , rpcmethod_Processes_(HostService_method_names[1], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::ClientReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* HostService::Stub::TransmitRaw(::grpc::ClientContext* context) {
@@ -48,18 +50,45 @@ void HostService::Stub::experimental_async::Transmit(::grpc::ClientContext* cont
   return ::grpc::internal::ClientAsyncReaderWriterFactory< ::hostService::TransmitPacket, ::hostService::TransmitResponse>::Create(channel_.get(), cq, rpcmethod_Transmit_, context, false, nullptr);
 }
 
+::grpc::ClientReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* HostService::Stub::ProcessesRaw(::grpc::ClientContext* context) {
+  return ::grpc::internal::ClientReaderWriterFactory< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>::Create(channel_.get(), rpcmethod_Processes_, context);
+}
+
+void HostService::Stub::experimental_async::Processes(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::hostService::TransmitProcesses,::hostService::TransmitProcessesResponse>* reactor) {
+  ::grpc::internal::ClientCallbackReaderWriterFactory< ::hostService::TransmitProcesses,::hostService::TransmitProcessesResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Processes_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* HostService::Stub::AsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>::Create(channel_.get(), cq, rpcmethod_Processes_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* HostService::Stub::PrepareAsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderWriterFactory< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>::Create(channel_.get(), cq, rpcmethod_Processes_, context, false, nullptr);
+}
+
 HostService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       HostService_method_names[0],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
       new ::grpc::internal::BidiStreamingHandler< HostService::Service, ::hostService::TransmitPacket, ::hostService::TransmitResponse>(
           std::mem_fn(&HostService::Service::Transmit), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      HostService_method_names[1],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< HostService::Service, ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>(
+          std::mem_fn(&HostService::Service::Processes), this)));
 }
 
 HostService::Service::~Service() {
 }
 
 ::grpc::Status HostService::Service::Transmit(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitResponse, ::hostService::TransmitPacket>* stream) {
+  (void) context;
+  (void) stream;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status HostService::Service::Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream) {
   (void) context;
   (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");

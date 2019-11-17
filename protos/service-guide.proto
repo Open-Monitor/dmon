@@ -4,6 +4,7 @@ package hostService;
 
 service HostService {
     rpc Transmit(stream TransmitPacket) returns(stream TransmitResponse) {}
+    rpc Processes(stream TransmitProcesses) returns(stream TransmitProcessesResponse) {}
 }
 
 message TransmitPacket {
@@ -23,6 +24,14 @@ message TransmitPacket {
     int64 InboundBandwithPackets = 11;
     int64 OutboundBandwithPackets = 12;
     string hostName = 13;
+}
+
+message TransmitProcesses {
+    repeated string Processes = 1;
+}
+
+message TransmitProcessesResponse {
+    int32 FrequencyAdjustment = 2;
 }
 
 message TransmitResponse {

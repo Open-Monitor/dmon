@@ -25,6 +25,8 @@ using grpc::Status;
 using hostService::HostService;
 using hostService::TransmitPacket;
 using hostService::TransmitResponse;
+using hostService::TransmitProcesses;
+using hostService::TransmitProcessesResponse;
 using json = nlohmann::json;
 
 bool initalized = false;
@@ -92,6 +94,54 @@ TransmitPacket MakeTransmitPacket() {
   return p;
 }
 
+TransmitProcesses MakeTransmitProcessesPackets() {
+  TransmitProcesses p;
+  std::string processes = *systemMon.getProcesses();
+  google::protobuf::RepeatedField<std::string> procs;
+  procs.Reserve(10);
+  *procs.mutable_data() = {processes.begin(), processes.end()};
+  return p;
+}
+
+//both of theses streaming clients should be abstracted.
+class ProcessMonitor {
+  public:
+    ProcessMonitor(std::shared_ptr<Channel> channel)
+      : stub_(HostService::NewStub(channel)) {}
+
+    void StreamProcesses() {
+      ClientContext context;
+      std::shared_ptr<ClientReaderWriter<TransmitProcesses, TransmitProcessesResponse> > stream(
+          stub_->Processes(&context));
+
+      std::thread writer([stream]() {
+              std::vector<TransmitProcesses> notes{
+              MakeTransmitProcessesPackets(),
+          };
+
+          for (const TransmitProcesses& note : notes) {
+            stream->Write(note);
+          }
+
+          stream->WritesDone();
+      });
+      writer.join();
+
+      TransmitProcessesResponse server_note;
+      while (stream->Read(&server_note))
+        responsetime = server_note.frequencyadjustment();
+
+      Status status = stream->Finish();
+      if (!status.ok()) {
+        std::cout << "Stream rpc failed." << std::endl;
+      }
+    }
+
+  private:
+    std::unique_ptr<HostService::Stub> stub_;
+};
+
+
 class ClientMonitor {
   public:
     ClientMonitor(std::shared_ptr<Channel> channel)
@@ -105,6 +155,7 @@ class ClientMonitor {
       readResponse(stream);
       handleStatus(stream);
     }
+
 
 
     void handleStatus(std::shared_ptr<ClientReaderWriter<TransmitPacket, TransmitResponse>> stream) {
@@ -165,9 +216,11 @@ int main(int argc, char** argv) {
 
   ClientMonitor guide(grpc::CreateChannel(hostIP, grpc::InsecureChannelCredentials()));
   std::cout << "Client Connecting to " << hostIP << std::endl;
+  ProcessMonitor pmon(grpc::CreateChannel(hostIP, grpc::InsecureChannelCredentials()));
 
   while (true) {
     guide.Stream();
+    pmon.StreamProcesses();
     std::this_thread::sleep_for(std::chrono::milliseconds(responsetime));
   }
 }

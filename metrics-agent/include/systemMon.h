@@ -35,4 +35,5 @@ class SystemMonitor {
     double getUptime();
     versionStruct getVersion();
     diskStruct getDiskIO();
+    std::string* getProcesses();
 };

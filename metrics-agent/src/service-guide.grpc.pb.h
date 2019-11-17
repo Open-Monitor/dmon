@@ -46,16 +46,29 @@ class HostService final {
     std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitPacket, ::hostService::TransmitResponse>> PrepareAsyncTransmit(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitPacket, ::hostService::TransmitResponse>>(PrepareAsyncTransmitRaw(context, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> Processes(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(ProcessesRaw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> AsyncProcesses(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(AsyncProcessesRaw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> PrepareAsyncProcesses(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(PrepareAsyncProcessesRaw(context, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
       virtual void Transmit(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::hostService::TransmitPacket,::hostService::TransmitResponse>* reactor) = 0;
+      virtual void Processes(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::hostService::TransmitProcesses,::hostService::TransmitProcessesResponse>* reactor) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
     virtual ::grpc::ClientReaderWriterInterface< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* TransmitRaw(::grpc::ClientContext* context) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* AsyncTransmitRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* PrepareAsyncTransmitRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* ProcessesRaw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* AsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* PrepareAsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -69,10 +82,20 @@ class HostService final {
     std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>> PrepareAsyncTransmit(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>>(PrepareAsyncTransmitRaw(context, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> Processes(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(ProcessesRaw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> AsyncProcesses(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(AsyncProcessesRaw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>> PrepareAsyncProcesses(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>>(PrepareAsyncProcessesRaw(context, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
       void Transmit(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::hostService::TransmitPacket,::hostService::TransmitResponse>* reactor) override;
+      void Processes(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::hostService::TransmitProcesses,::hostService::TransmitProcessesResponse>* reactor) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -87,7 +110,11 @@ class HostService final {
     ::grpc::ClientReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* TransmitRaw(::grpc::ClientContext* context) override;
     ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* AsyncTransmitRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitPacket, ::hostService::TransmitResponse>* PrepareAsyncTransmitRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* ProcessesRaw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* AsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* PrepareAsyncProcessesRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Transmit_;
+    const ::grpc::internal::RpcMethod rpcmethod_Processes_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -96,6 +123,7 @@ class HostService final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Transmit(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitResponse, ::hostService::TransmitPacket>* stream);
+    virtual ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_Transmit : public BaseClass {
@@ -117,7 +145,27 @@ class HostService final {
       ::grpc::Service::RequestAsyncBidiStreaming(0, context, stream, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Transmit<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Processes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithAsyncMethod_Processes() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Processes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestProcesses(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Transmit<WithAsyncMethod_Processes<Service > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_Transmit : public BaseClass {
    private:
@@ -140,7 +188,29 @@ class HostService final {
       return new ::grpc::internal::UnimplementedBidiReactor<
         ::hostService::TransmitPacket, ::hostService::TransmitResponse>;}
   };
-  typedef ExperimentalWithCallbackMethod_Transmit<Service > ExperimentalCallbackService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_Processes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    ExperimentalWithCallbackMethod_Processes() {
+      ::grpc::Service::experimental().MarkMethodCallback(1,
+        new ::grpc::internal::CallbackBidiHandler< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>(
+          [this] { return this->Processes(); }));
+    }
+    ~ExperimentalWithCallbackMethod_Processes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerBidiReactor< ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>* Processes() {
+      return new ::grpc::internal::UnimplementedBidiReactor<
+        ::hostService::TransmitProcesses, ::hostService::TransmitProcessesResponse>;}
+  };
+  typedef ExperimentalWithCallbackMethod_Transmit<ExperimentalWithCallbackMethod_Processes<Service > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Transmit : public BaseClass {
    private:
@@ -154,6 +224,23 @@ class HostService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Transmit(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitResponse, ::hostService::TransmitPacket>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Processes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithGenericMethod_Processes() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Processes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -179,6 +266,26 @@ class HostService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Processes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    WithRawMethod_Processes() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Processes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestProcesses(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(1, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class ExperimentalWithRawCallbackMethod_Transmit : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service *service) {}
@@ -197,6 +304,28 @@ class HostService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Transmit() {
+      return new ::grpc::internal::UnimplementedBidiReactor<
+        ::grpc::ByteBuffer, ::grpc::ByteBuffer>;}
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_Processes : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service *service) {}
+   public:
+    ExperimentalWithRawCallbackMethod_Processes() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(1,
+        new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this] { return this->Processes(); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_Processes() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Processes(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::hostService::TransmitProcessesResponse, ::hostService::TransmitProcesses>* stream)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Processes() {
       return new ::grpc::internal::UnimplementedBidiReactor<
         ::grpc::ByteBuffer, ::grpc::ByteBuffer>;}
   };

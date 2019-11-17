@@ -41,7 +41,7 @@ struct TableStruct_service_2dguide_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[2]
+  static const ::google::protobuf::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -52,6 +52,12 @@ namespace hostService {
 class TransmitPacket;
 class TransmitPacketDefaultTypeInternal;
 extern TransmitPacketDefaultTypeInternal _TransmitPacket_default_instance_;
+class TransmitProcesses;
+class TransmitProcessesDefaultTypeInternal;
+extern TransmitProcessesDefaultTypeInternal _TransmitProcesses_default_instance_;
+class TransmitProcessesResponse;
+class TransmitProcessesResponseDefaultTypeInternal;
+extern TransmitProcessesResponseDefaultTypeInternal _TransmitProcessesResponse_default_instance_;
 class TransmitResponse;
 class TransmitResponseDefaultTypeInternal;
 extern TransmitResponseDefaultTypeInternal _TransmitResponse_default_instance_;
@@ -59,6 +65,8 @@ extern TransmitResponseDefaultTypeInternal _TransmitResponse_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::hostService::TransmitPacket* Arena::CreateMaybeMessage<::hostService::TransmitPacket>(Arena*);
+template<> ::hostService::TransmitProcesses* Arena::CreateMaybeMessage<::hostService::TransmitProcesses>(Arena*);
+template<> ::hostService::TransmitProcessesResponse* Arena::CreateMaybeMessage<::hostService::TransmitProcessesResponse>(Arena*);
 template<> ::hostService::TransmitResponse* Arena::CreateMaybeMessage<::hostService::TransmitResponse>(Arena*);
 }  // namespace protobuf
 }  // namespace google
@@ -294,6 +302,246 @@ class TransmitPacket final :
 };
 // -------------------------------------------------------------------
 
+class TransmitProcesses final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:hostService.TransmitProcesses) */ {
+ public:
+  TransmitProcesses();
+  virtual ~TransmitProcesses();
+
+  TransmitProcesses(const TransmitProcesses& from);
+
+  inline TransmitProcesses& operator=(const TransmitProcesses& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  TransmitProcesses(TransmitProcesses&& from) noexcept
+    : TransmitProcesses() {
+    *this = ::std::move(from);
+  }
+
+  inline TransmitProcesses& operator=(TransmitProcesses&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const TransmitProcesses& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TransmitProcesses* internal_default_instance() {
+    return reinterpret_cast<const TransmitProcesses*>(
+               &_TransmitProcesses_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(TransmitProcesses* other);
+  friend void swap(TransmitProcesses& a, TransmitProcesses& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TransmitProcesses* New() const final {
+    return CreateMaybeMessage<TransmitProcesses>(nullptr);
+  }
+
+  TransmitProcesses* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<TransmitProcesses>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const TransmitProcesses& from);
+  void MergeFrom(const TransmitProcesses& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TransmitProcesses* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated string Processes = 1;
+  int processes_size() const;
+  void clear_processes();
+  static const int kProcessesFieldNumber = 1;
+  const ::std::string& processes(int index) const;
+  ::std::string* mutable_processes(int index);
+  void set_processes(int index, const ::std::string& value);
+  #if LANG_CXX11
+  void set_processes(int index, ::std::string&& value);
+  #endif
+  void set_processes(int index, const char* value);
+  void set_processes(int index, const char* value, size_t size);
+  ::std::string* add_processes();
+  void add_processes(const ::std::string& value);
+  #if LANG_CXX11
+  void add_processes(::std::string&& value);
+  #endif
+  void add_processes(const char* value);
+  void add_processes(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField<::std::string>& processes() const;
+  ::google::protobuf::RepeatedPtrField<::std::string>* mutable_processes();
+
+  // @@protoc_insertion_point(class_scope:hostService.TransmitProcesses)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField<::std::string> processes_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2dguide_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TransmitProcessesResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:hostService.TransmitProcessesResponse) */ {
+ public:
+  TransmitProcessesResponse();
+  virtual ~TransmitProcessesResponse();
+
+  TransmitProcessesResponse(const TransmitProcessesResponse& from);
+
+  inline TransmitProcessesResponse& operator=(const TransmitProcessesResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  TransmitProcessesResponse(TransmitProcessesResponse&& from) noexcept
+    : TransmitProcessesResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline TransmitProcessesResponse& operator=(TransmitProcessesResponse&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const TransmitProcessesResponse& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TransmitProcessesResponse* internal_default_instance() {
+    return reinterpret_cast<const TransmitProcessesResponse*>(
+               &_TransmitProcessesResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  void Swap(TransmitProcessesResponse* other);
+  friend void swap(TransmitProcessesResponse& a, TransmitProcessesResponse& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TransmitProcessesResponse* New() const final {
+    return CreateMaybeMessage<TransmitProcessesResponse>(nullptr);
+  }
+
+  TransmitProcessesResponse* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<TransmitProcessesResponse>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const TransmitProcessesResponse& from);
+  void MergeFrom(const TransmitProcessesResponse& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TransmitProcessesResponse* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // int32 FrequencyAdjustment = 2;
+  void clear_frequencyadjustment();
+  static const int kFrequencyAdjustmentFieldNumber = 2;
+  ::google::protobuf::int32 frequencyadjustment() const;
+  void set_frequencyadjustment(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:hostService.TransmitProcessesResponse)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::int32 frequencyadjustment_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_service_2dguide_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TransmitResponse final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:hostService.TransmitResponse) */ {
  public:
@@ -332,7 +580,7 @@ class TransmitResponse final :
                &_TransmitResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   void Swap(TransmitResponse* other);
   friend void swap(TransmitResponse& a, TransmitResponse& b) {
@@ -762,6 +1010,97 @@ inline void TransmitPacket::set_allocated_hostname(::std::string* hostname) {
 
 // -------------------------------------------------------------------
 
+// TransmitProcesses
+
+// repeated string Processes = 1;
+inline int TransmitProcesses::processes_size() const {
+  return processes_.size();
+}
+inline void TransmitProcesses::clear_processes() {
+  processes_.Clear();
+}
+inline const ::std::string& TransmitProcesses::processes(int index) const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitProcesses.Processes)
+  return processes_.Get(index);
+}
+inline ::std::string* TransmitProcesses::mutable_processes(int index) {
+  // @@protoc_insertion_point(field_mutable:hostService.TransmitProcesses.Processes)
+  return processes_.Mutable(index);
+}
+inline void TransmitProcesses::set_processes(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:hostService.TransmitProcesses.Processes)
+  processes_.Mutable(index)->assign(value);
+}
+#if LANG_CXX11
+inline void TransmitProcesses::set_processes(int index, ::std::string&& value) {
+  // @@protoc_insertion_point(field_set:hostService.TransmitProcesses.Processes)
+  processes_.Mutable(index)->assign(std::move(value));
+}
+#endif
+inline void TransmitProcesses::set_processes(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  processes_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:hostService.TransmitProcesses.Processes)
+}
+inline void TransmitProcesses::set_processes(int index, const char* value, size_t size) {
+  processes_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:hostService.TransmitProcesses.Processes)
+}
+inline ::std::string* TransmitProcesses::add_processes() {
+  // @@protoc_insertion_point(field_add_mutable:hostService.TransmitProcesses.Processes)
+  return processes_.Add();
+}
+inline void TransmitProcesses::add_processes(const ::std::string& value) {
+  processes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:hostService.TransmitProcesses.Processes)
+}
+#if LANG_CXX11
+inline void TransmitProcesses::add_processes(::std::string&& value) {
+  processes_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:hostService.TransmitProcesses.Processes)
+}
+#endif
+inline void TransmitProcesses::add_processes(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  processes_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:hostService.TransmitProcesses.Processes)
+}
+inline void TransmitProcesses::add_processes(const char* value, size_t size) {
+  processes_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:hostService.TransmitProcesses.Processes)
+}
+inline const ::google::protobuf::RepeatedPtrField<::std::string>&
+TransmitProcesses::processes() const {
+  // @@protoc_insertion_point(field_list:hostService.TransmitProcesses.Processes)
+  return processes_;
+}
+inline ::google::protobuf::RepeatedPtrField<::std::string>*
+TransmitProcesses::mutable_processes() {
+  // @@protoc_insertion_point(field_mutable_list:hostService.TransmitProcesses.Processes)
+  return &processes_;
+}
+
+// -------------------------------------------------------------------
+
+// TransmitProcessesResponse
+
+// int32 FrequencyAdjustment = 2;
+inline void TransmitProcessesResponse::clear_frequencyadjustment() {
+  frequencyadjustment_ = 0;
+}
+inline ::google::protobuf::int32 TransmitProcessesResponse::frequencyadjustment() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitProcessesResponse.FrequencyAdjustment)
+  return frequencyadjustment_;
+}
+inline void TransmitProcessesResponse::set_frequencyadjustment(::google::protobuf::int32 value) {
+  
+  frequencyadjustment_ = value;
+  // @@protoc_insertion_point(field_set:hostService.TransmitProcessesResponse.FrequencyAdjustment)
+}
+
+// -------------------------------------------------------------------
+
 // TransmitResponse
 
 // bool DidInsert = 1;
@@ -795,6 +1134,10 @@ inline void TransmitResponse::set_frequencyadjustment(::google::protobuf::int32 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

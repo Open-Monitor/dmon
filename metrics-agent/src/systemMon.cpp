@@ -1,4 +1,5 @@
 #include "../include/systemMon.h"
+#include <iostream>
 
 SystemMonitor::SystemMonitor() {}
 
@@ -72,6 +73,34 @@ double SystemMonitor::getUptime() {
   fscanf(file, "%lf", &uptime);
   fclose(file);
   return uptime;
+}
+
+
+std::string* SystemMonitor::getProcesses() {
+  //parsing "ps" is a serious issue
+  std::string cmd = "ps --no-headers -Ao user,comm,pid,pcpu,pmem --sort=-pcpu | head -n 10";
+  std::string* processes = new std::string[10];
+  FILE* stream;
+  const int max_buffer = 256;
+  char buffer[max_buffer];
+  stream = popen(cmd.c_str(), "r");
+  if (stream) {
+    int i = 0;
+    while (!feof(stream)) {
+      if (fgets(buffer, max_buffer, stream) != NULL) {
+        processes[i] = buffer;
+      }
+      i++;
+    }
+    pclose(stream);
+  }
+  std::string line;
+  for (unsigned int i=0; i<10; i++) {
+      line = processes[i].erase(processes[i].size() - 1);
+      processes[i] = line;
+      std::cout << processes[i] << std::endl;
+  }
+  return processes;
 }
 
 

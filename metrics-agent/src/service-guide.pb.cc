@@ -21,6 +21,14 @@ class TransmitPacketDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<TransmitPacket> _instance;
 } _TransmitPacket_default_instance_;
+class TransmitProcessesDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<TransmitProcesses> _instance;
+} _TransmitProcesses_default_instance_;
+class TransmitProcessesResponseDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<TransmitProcessesResponse> _instance;
+} _TransmitProcessesResponse_default_instance_;
 class TransmitResponseDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<TransmitResponse> _instance;
@@ -40,6 +48,34 @@ static void InitDefaultsTransmitPacket_service_2dguide_2eproto() {
 ::google::protobuf::internal::SCCInfo<0> scc_info_TransmitPacket_service_2dguide_2eproto =
     {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsTransmitPacket_service_2dguide_2eproto}, {}};
 
+static void InitDefaultsTransmitProcesses_service_2dguide_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::hostService::_TransmitProcesses_default_instance_;
+    new (ptr) ::hostService::TransmitProcesses();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::hostService::TransmitProcesses::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_TransmitProcesses_service_2dguide_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsTransmitProcesses_service_2dguide_2eproto}, {}};
+
+static void InitDefaultsTransmitProcessesResponse_service_2dguide_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::hostService::_TransmitProcessesResponse_default_instance_;
+    new (ptr) ::hostService::TransmitProcessesResponse();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::hostService::TransmitProcessesResponse::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_TransmitProcessesResponse_service_2dguide_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsTransmitProcessesResponse_service_2dguide_2eproto}, {}};
+
 static void InitDefaultsTransmitResponse_service_2dguide_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -56,10 +92,12 @@ static void InitDefaultsTransmitResponse_service_2dguide_2eproto() {
 
 void InitDefaults_service_2dguide_2eproto() {
   ::google::protobuf::internal::InitSCC(&scc_info_TransmitPacket_service_2dguide_2eproto.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_TransmitProcesses_service_2dguide_2eproto.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_TransmitProcessesResponse_service_2dguide_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_TransmitResponse_service_2dguide_2eproto.base);
 }
 
-::google::protobuf::Metadata file_level_metadata_service_2dguide_2eproto[2];
+::google::protobuf::Metadata file_level_metadata_service_2dguide_2eproto[4];
 constexpr ::google::protobuf::EnumDescriptor const** file_level_enum_descriptors_service_2dguide_2eproto = nullptr;
 constexpr ::google::protobuf::ServiceDescriptor const** file_level_service_descriptors_service_2dguide_2eproto = nullptr;
 
@@ -83,6 +121,18 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, outboundbandwithpackets_),
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, hostname_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitProcesses, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitProcesses, processes_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitProcessesResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitProcessesResponse, frequencyadjustment_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitResponse, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -92,18 +142,22 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::hostService::TransmitPacket)},
-  { 18, -1, sizeof(::hostService::TransmitResponse)},
+  { 18, -1, sizeof(::hostService::TransmitProcesses)},
+  { 24, -1, sizeof(::hostService::TransmitProcessesResponse)},
+  { 30, -1, sizeof(::hostService::TransmitResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::hostService::_TransmitPacket_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::hostService::_TransmitProcesses_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::hostService::_TransmitProcessesResponse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::hostService::_TransmitResponse_default_instance_),
 };
 
 ::google::protobuf::internal::AssignDescriptorsTable assign_descriptors_table_service_2dguide_2eproto = {
   {}, AddDescriptors_service_2dguide_2eproto, "service-guide.proto", schemas,
   file_default_instances, TableStruct_service_2dguide_2eproto::offsets,
-  file_level_metadata_service_2dguide_2eproto, 2, file_level_enum_descriptors_service_2dguide_2eproto, file_level_service_descriptors_service_2dguide_2eproto,
+  file_level_metadata_service_2dguide_2eproto, 4, file_level_enum_descriptors_service_2dguide_2eproto, file_level_service_descriptors_service_2dguide_2eproto,
 };
 
 const char descriptor_table_protodef_service_2dguide_2eproto[] =
@@ -115,16 +169,21 @@ const char descriptor_table_protodef_service_2dguide_2eproto[] =
   "\022\034\n\024InboundBandwithBytes\030\t \001(\003\022\035\n\025Outbou"
   "ndBandwithBytes\030\n \001(\003\022\036\n\026InboundBandwith"
   "Packets\030\013 \001(\003\022\037\n\027OutboundBandwithPackets"
-  "\030\014 \001(\003\022\020\n\010hostName\030\r \001(\t\"B\n\020TransmitResp"
-  "onse\022\021\n\tDidInsert\030\001 \001(\010\022\033\n\023FrequencyAdju"
-  "stment\030\002 \001(\0052[\n\013HostService\022L\n\010Transmit\022"
-  "\033.hostService.TransmitPacket\032\035.hostServi"
-  "ce.TransmitResponse\"\000(\0010\001b\006proto3"
+  "\030\014 \001(\003\022\020\n\010hostName\030\r \001(\t\"&\n\021TransmitProc"
+  "esses\022\021\n\tProcesses\030\001 \003(\t\"8\n\031TransmitProc"
+  "essesResponse\022\033\n\023FrequencyAdjustment\030\002 \001"
+  "(\005\"B\n\020TransmitResponse\022\021\n\tDidInsert\030\001 \001("
+  "\010\022\033\n\023FrequencyAdjustment\030\002 \001(\0052\266\001\n\013HostS"
+  "ervice\022L\n\010Transmit\022\033.hostService.Transmi"
+  "tPacket\032\035.hostService.TransmitResponse\"\000"
+  "(\0010\001\022Y\n\tProcesses\022\036.hostService.Transmit"
+  "Processes\032&.hostService.TransmitProcesse"
+  "sResponse\"\000(\0010\001b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_service_2dguide_2eproto = {
   false, InitDefaults_service_2dguide_2eproto, 
   descriptor_table_protodef_service_2dguide_2eproto,
-  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 513,
+  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 703,
 };
 
 void AddDescriptors_service_2dguide_2eproto() {
@@ -1039,6 +1098,558 @@ void TransmitPacket::InternalSwap(TransmitPacket* other) {
 
 // ===================================================================
 
+void TransmitProcesses::InitAsDefaultInstance() {
+}
+class TransmitProcesses::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TransmitProcesses::kProcessesFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TransmitProcesses::TransmitProcesses()
+  : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:hostService.TransmitProcesses)
+}
+TransmitProcesses::TransmitProcesses(const TransmitProcesses& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(nullptr),
+      processes_(from.processes_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:hostService.TransmitProcesses)
+}
+
+void TransmitProcesses::SharedCtor() {
+  ::google::protobuf::internal::InitSCC(
+      &scc_info_TransmitProcesses_service_2dguide_2eproto.base);
+}
+
+TransmitProcesses::~TransmitProcesses() {
+  // @@protoc_insertion_point(destructor:hostService.TransmitProcesses)
+  SharedDtor();
+}
+
+void TransmitProcesses::SharedDtor() {
+}
+
+void TransmitProcesses::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TransmitProcesses& TransmitProcesses::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_TransmitProcesses_service_2dguide_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TransmitProcesses::Clear() {
+// @@protoc_insertion_point(message_clear_start:hostService.TransmitProcesses)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  processes_.Clear();
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* TransmitProcesses::_InternalParse(const char* begin, const char* end, void* object,
+                  ::google::protobuf::internal::ParseContext* ctx) {
+  auto msg = static_cast<TransmitProcesses*>(object);
+  ::google::protobuf::int32 size; (void)size;
+  int depth; (void)depth;
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::ParseFunc parser_till_end; (void)parser_till_end;
+  auto ptr = begin;
+  while (ptr < end) {
+    ptr = ::google::protobuf::io::Parse32(ptr, &tag);
+    GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+    switch (tag >> 3) {
+      // repeated string Processes = 1;
+      case 1: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
+        do {
+          ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+          GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+          ctx->extra_parse_data().SetFieldName("hostService.TransmitProcesses.Processes");
+          object = msg->add_processes();
+          if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
+            parser_till_end = ::google::protobuf::internal::GreedyStringParserUTF8;
+            goto string_till_end;
+          }
+          GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheckUTF8(ptr, size, ctx));
+          ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
+          ptr += size;
+          if (ptr >= end) break;
+        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 10 && (ptr += 1));
+        break;
+      }
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->EndGroup(tag);
+          return ptr;
+        }
+        auto res = UnknownFieldParse(tag, {_InternalParse, msg},
+          ptr, end, msg->_internal_metadata_.mutable_unknown_fields(), ctx);
+        ptr = res.first;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr != nullptr);
+        if (res.second) return ptr;
+      }
+    }  // switch
+  }  // while
+  return ptr;
+string_till_end:
+  static_cast<::std::string*>(object)->clear();
+  static_cast<::std::string*>(object)->reserve(size);
+  goto len_delim_till_end;
+len_delim_till_end:
+  return ctx->StoreAndTailCall(ptr, end, {_InternalParse, msg},
+                               {parser_till_end, object}, size);
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool TransmitProcesses::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:hostService.TransmitProcesses)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated string Processes = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->add_processes()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->processes(this->processes_size() - 1).data(),
+            static_cast<int>(this->processes(this->processes_size() - 1).length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "hostService.TransmitProcesses.Processes"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:hostService.TransmitProcesses)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:hostService.TransmitProcesses)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void TransmitProcesses::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:hostService.TransmitProcesses)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string Processes = 1;
+  for (int i = 0, n = this->processes_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->processes(i).data(), static_cast<int>(this->processes(i).length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "hostService.TransmitProcesses.Processes");
+    ::google::protobuf::internal::WireFormatLite::WriteString(
+      1, this->processes(i), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:hostService.TransmitProcesses)
+}
+
+::google::protobuf::uint8* TransmitProcesses::InternalSerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:hostService.TransmitProcesses)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated string Processes = 1;
+  for (int i = 0, n = this->processes_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->processes(i).data(), static_cast<int>(this->processes(i).length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "hostService.TransmitProcesses.Processes");
+    target = ::google::protobuf::internal::WireFormatLite::
+      WriteStringToArray(1, this->processes(i), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:hostService.TransmitProcesses)
+  return target;
+}
+
+size_t TransmitProcesses::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:hostService.TransmitProcesses)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string Processes = 1;
+  total_size += 1 *
+      ::google::protobuf::internal::FromIntSize(this->processes_size());
+  for (int i = 0, n = this->processes_size(); i < n; i++) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+      this->processes(i));
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TransmitProcesses::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:hostService.TransmitProcesses)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TransmitProcesses* source =
+      ::google::protobuf::DynamicCastToGenerated<TransmitProcesses>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:hostService.TransmitProcesses)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:hostService.TransmitProcesses)
+    MergeFrom(*source);
+  }
+}
+
+void TransmitProcesses::MergeFrom(const TransmitProcesses& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:hostService.TransmitProcesses)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  processes_.MergeFrom(from.processes_);
+}
+
+void TransmitProcesses::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:hostService.TransmitProcesses)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TransmitProcesses::CopyFrom(const TransmitProcesses& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:hostService.TransmitProcesses)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TransmitProcesses::IsInitialized() const {
+  return true;
+}
+
+void TransmitProcesses::Swap(TransmitProcesses* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TransmitProcesses::InternalSwap(TransmitProcesses* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  processes_.InternalSwap(CastToBase(&other->processes_));
+}
+
+::google::protobuf::Metadata TransmitProcesses::GetMetadata() const {
+  ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_service_2dguide_2eproto);
+  return ::file_level_metadata_service_2dguide_2eproto[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void TransmitProcessesResponse::InitAsDefaultInstance() {
+}
+class TransmitProcessesResponse::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int TransmitProcessesResponse::kFrequencyAdjustmentFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+TransmitProcessesResponse::TransmitProcessesResponse()
+  : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:hostService.TransmitProcessesResponse)
+}
+TransmitProcessesResponse::TransmitProcessesResponse(const TransmitProcessesResponse& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  frequencyadjustment_ = from.frequencyadjustment_;
+  // @@protoc_insertion_point(copy_constructor:hostService.TransmitProcessesResponse)
+}
+
+void TransmitProcessesResponse::SharedCtor() {
+  frequencyadjustment_ = 0;
+}
+
+TransmitProcessesResponse::~TransmitProcessesResponse() {
+  // @@protoc_insertion_point(destructor:hostService.TransmitProcessesResponse)
+  SharedDtor();
+}
+
+void TransmitProcessesResponse::SharedDtor() {
+}
+
+void TransmitProcessesResponse::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TransmitProcessesResponse& TransmitProcessesResponse::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_TransmitProcessesResponse_service_2dguide_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TransmitProcessesResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:hostService.TransmitProcessesResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  frequencyadjustment_ = 0;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* TransmitProcessesResponse::_InternalParse(const char* begin, const char* end, void* object,
+                  ::google::protobuf::internal::ParseContext* ctx) {
+  auto msg = static_cast<TransmitProcessesResponse*>(object);
+  ::google::protobuf::int32 size; (void)size;
+  int depth; (void)depth;
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::ParseFunc parser_till_end; (void)parser_till_end;
+  auto ptr = begin;
+  while (ptr < end) {
+    ptr = ::google::protobuf::io::Parse32(ptr, &tag);
+    GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+    switch (tag >> 3) {
+      // int32 FrequencyAdjustment = 2;
+      case 2: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
+        msg->set_frequencyadjustment(::google::protobuf::internal::ReadVarint(&ptr));
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        break;
+      }
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->EndGroup(tag);
+          return ptr;
+        }
+        auto res = UnknownFieldParse(tag, {_InternalParse, msg},
+          ptr, end, msg->_internal_metadata_.mutable_unknown_fields(), ctx);
+        ptr = res.first;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr != nullptr);
+        if (res.second) return ptr;
+      }
+    }  // switch
+  }  // while
+  return ptr;
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool TransmitProcessesResponse::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:hostService.TransmitProcessesResponse)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // int32 FrequencyAdjustment = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &frequencyadjustment_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:hostService.TransmitProcessesResponse)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:hostService.TransmitProcessesResponse)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void TransmitProcessesResponse::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:hostService.TransmitProcessesResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 FrequencyAdjustment = 2;
+  if (this->frequencyadjustment() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->frequencyadjustment(), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:hostService.TransmitProcessesResponse)
+}
+
+::google::protobuf::uint8* TransmitProcessesResponse::InternalSerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:hostService.TransmitProcessesResponse)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 FrequencyAdjustment = 2;
+  if (this->frequencyadjustment() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->frequencyadjustment(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:hostService.TransmitProcessesResponse)
+  return target;
+}
+
+size_t TransmitProcessesResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:hostService.TransmitProcessesResponse)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int32 FrequencyAdjustment = 2;
+  if (this->frequencyadjustment() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->frequencyadjustment());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TransmitProcessesResponse::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:hostService.TransmitProcessesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TransmitProcessesResponse* source =
+      ::google::protobuf::DynamicCastToGenerated<TransmitProcessesResponse>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:hostService.TransmitProcessesResponse)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:hostService.TransmitProcessesResponse)
+    MergeFrom(*source);
+  }
+}
+
+void TransmitProcessesResponse::MergeFrom(const TransmitProcessesResponse& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:hostService.TransmitProcessesResponse)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.frequencyadjustment() != 0) {
+    set_frequencyadjustment(from.frequencyadjustment());
+  }
+}
+
+void TransmitProcessesResponse::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:hostService.TransmitProcessesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TransmitProcessesResponse::CopyFrom(const TransmitProcessesResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:hostService.TransmitProcessesResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TransmitProcessesResponse::IsInitialized() const {
+  return true;
+}
+
+void TransmitProcessesResponse::Swap(TransmitProcessesResponse* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void TransmitProcessesResponse::InternalSwap(TransmitProcessesResponse* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(frequencyadjustment_, other->frequencyadjustment_);
+}
+
+::google::protobuf::Metadata TransmitProcessesResponse::GetMetadata() const {
+  ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_service_2dguide_2eproto);
+  return ::file_level_metadata_service_2dguide_2eproto[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
 void TransmitResponse::InitAsDefaultInstance() {
 }
 class TransmitResponse::HasBitSetters {
@@ -1349,6 +1960,12 @@ namespace google {
 namespace protobuf {
 template<> PROTOBUF_NOINLINE ::hostService::TransmitPacket* Arena::CreateMaybeMessage< ::hostService::TransmitPacket >(Arena* arena) {
   return Arena::CreateInternal< ::hostService::TransmitPacket >(arena);
+}
+template<> PROTOBUF_NOINLINE ::hostService::TransmitProcesses* Arena::CreateMaybeMessage< ::hostService::TransmitProcesses >(Arena* arena) {
+  return Arena::CreateInternal< ::hostService::TransmitProcesses >(arena);
+}
+template<> PROTOBUF_NOINLINE ::hostService::TransmitProcessesResponse* Arena::CreateMaybeMessage< ::hostService::TransmitProcessesResponse >(Arena* arena) {
+  return Arena::CreateInternal< ::hostService::TransmitProcessesResponse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::hostService::TransmitResponse* Arena::CreateMaybeMessage< ::hostService::TransmitResponse >(Arena* arena) {
   return Arena::CreateInternal< ::hostService::TransmitResponse >(arena);
