@@ -225,6 +225,20 @@ class TransmitPacket final :
   ::std::string* release_hostname();
   void set_allocated_hostname(::std::string* hostname);
 
+  // string ClientVersion = 14;
+  void clear_clientversion();
+  static const int kClientVersionFieldNumber = 14;
+  const ::std::string& clientversion() const;
+  void set_clientversion(const ::std::string& value);
+  #if LANG_CXX11
+  void set_clientversion(::std::string&& value);
+  #endif
+  void set_clientversion(const char* value);
+  void set_clientversion(const char* value, size_t size);
+  ::std::string* mutable_clientversion();
+  ::std::string* release_clientversion();
+  void set_allocated_clientversion(::std::string* clientversion);
+
   // int64 MemoryUsed = 1;
   void clear_memoryused();
   static const int kMemoryUsedFieldNumber = 1;
@@ -288,6 +302,7 @@ class TransmitPacket final :
   ::google::protobuf::internal::ArenaStringPtr ip_;
   ::google::protobuf::internal::ArenaStringPtr deviceid_;
   ::google::protobuf::internal::ArenaStringPtr hostname_;
+  ::google::protobuf::internal::ArenaStringPtr clientversion_;
   ::google::protobuf::int64 memoryused_;
   ::google::protobuf::int64 memoryavailable_;
   ::google::protobuf::int64 memorytotal_;
@@ -1006,6 +1021,59 @@ inline void TransmitPacket::set_allocated_hostname(::std::string* hostname) {
   }
   hostname_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), hostname);
   // @@protoc_insertion_point(field_set_allocated:hostService.TransmitPacket.hostName)
+}
+
+// string ClientVersion = 14;
+inline void TransmitPacket::clear_clientversion() {
+  clientversion_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& TransmitPacket::clientversion() const {
+  // @@protoc_insertion_point(field_get:hostService.TransmitPacket.ClientVersion)
+  return clientversion_.GetNoArena();
+}
+inline void TransmitPacket::set_clientversion(const ::std::string& value) {
+  
+  clientversion_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:hostService.TransmitPacket.ClientVersion)
+}
+#if LANG_CXX11
+inline void TransmitPacket::set_clientversion(::std::string&& value) {
+  
+  clientversion_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:hostService.TransmitPacket.ClientVersion)
+}
+#endif
+inline void TransmitPacket::set_clientversion(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  clientversion_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:hostService.TransmitPacket.ClientVersion)
+}
+inline void TransmitPacket::set_clientversion(const char* value, size_t size) {
+  
+  clientversion_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:hostService.TransmitPacket.ClientVersion)
+}
+inline ::std::string* TransmitPacket::mutable_clientversion() {
+  
+  // @@protoc_insertion_point(field_mutable:hostService.TransmitPacket.ClientVersion)
+  return clientversion_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* TransmitPacket::release_clientversion() {
+  // @@protoc_insertion_point(field_release:hostService.TransmitPacket.ClientVersion)
+  
+  return clientversion_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TransmitPacket::set_allocated_clientversion(::std::string* clientversion) {
+  if (clientversion != nullptr) {
+    
+  } else {
+    
+  }
+  clientversion_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), clientversion);
+  // @@protoc_insertion_point(field_set_allocated:hostService.TransmitPacket.ClientVersion)
 }
 
 // -------------------------------------------------------------------

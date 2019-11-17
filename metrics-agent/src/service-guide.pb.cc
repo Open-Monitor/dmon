@@ -120,6 +120,7 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, inboundbandwithpackets_),
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, outboundbandwithpackets_),
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, hostname_),
+  PROTOBUF_FIELD_OFFSET(::hostService::TransmitPacket, clientversion_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::hostService::TransmitProcesses, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -142,9 +143,9 @@ const ::google::protobuf::uint32 TableStruct_service_2dguide_2eproto::offsets[] 
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::hostService::TransmitPacket)},
-  { 18, -1, sizeof(::hostService::TransmitProcesses)},
-  { 24, -1, sizeof(::hostService::TransmitProcessesResponse)},
-  { 30, -1, sizeof(::hostService::TransmitResponse)},
+  { 19, -1, sizeof(::hostService::TransmitProcesses)},
+  { 25, -1, sizeof(::hostService::TransmitProcessesResponse)},
+  { 31, -1, sizeof(::hostService::TransmitResponse)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -161,7 +162,7 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_service_2dguide_2eproto[] =
-  "\n\023service-guide.proto\022\013hostService\"\263\002\n\016T"
+  "\n\023service-guide.proto\022\013hostService\"\312\002\n\016T"
   "ransmitPacket\022\022\n\nMemoryUsed\030\001 \001(\003\022\027\n\017Mem"
   "oryAvailable\030\002 \001(\003\022\023\n\013MemoryTotal\030\003 \001(\003\022"
   "\020\n\010CpuUsage\030\004 \001(\001\022\016\n\006UpTime\030\005 \001(\001\022\017\n\007Ver"
@@ -169,21 +170,22 @@ const char descriptor_table_protodef_service_2dguide_2eproto[] =
   "\022\034\n\024InboundBandwithBytes\030\t \001(\003\022\035\n\025Outbou"
   "ndBandwithBytes\030\n \001(\003\022\036\n\026InboundBandwith"
   "Packets\030\013 \001(\003\022\037\n\027OutboundBandwithPackets"
-  "\030\014 \001(\003\022\020\n\010hostName\030\r \001(\t\"&\n\021TransmitProc"
-  "esses\022\021\n\tProcesses\030\001 \003(\t\"8\n\031TransmitProc"
-  "essesResponse\022\033\n\023FrequencyAdjustment\030\002 \001"
-  "(\005\"B\n\020TransmitResponse\022\021\n\tDidInsert\030\001 \001("
-  "\010\022\033\n\023FrequencyAdjustment\030\002 \001(\0052\266\001\n\013HostS"
-  "ervice\022L\n\010Transmit\022\033.hostService.Transmi"
-  "tPacket\032\035.hostService.TransmitResponse\"\000"
-  "(\0010\001\022Y\n\tProcesses\022\036.hostService.Transmit"
-  "Processes\032&.hostService.TransmitProcesse"
-  "sResponse\"\000(\0010\001b\006proto3"
+  "\030\014 \001(\003\022\020\n\010hostName\030\r \001(\t\022\025\n\rClientVersio"
+  "n\030\016 \001(\t\"&\n\021TransmitProcesses\022\021\n\tProcesse"
+  "s\030\001 \003(\t\"8\n\031TransmitProcessesResponse\022\033\n\023"
+  "FrequencyAdjustment\030\002 \001(\005\"B\n\020TransmitRes"
+  "ponse\022\021\n\tDidInsert\030\001 \001(\010\022\033\n\023FrequencyAdj"
+  "ustment\030\002 \001(\0052\266\001\n\013HostService\022L\n\010Transmi"
+  "t\022\033.hostService.TransmitPacket\032\035.hostSer"
+  "vice.TransmitResponse\"\000(\0010\001\022Y\n\tProcesses"
+  "\022\036.hostService.TransmitProcesses\032&.hostS"
+  "ervice.TransmitProcessesResponse\"\000(\0010\001b\006"
+  "proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_service_2dguide_2eproto = {
   false, InitDefaults_service_2dguide_2eproto, 
   descriptor_table_protodef_service_2dguide_2eproto,
-  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 703,
+  "service-guide.proto", &assign_descriptors_table_service_2dguide_2eproto, 726,
 };
 
 void AddDescriptors_service_2dguide_2eproto() {
@@ -219,6 +221,7 @@ const int TransmitPacket::kOutboundBandwithBytesFieldNumber;
 const int TransmitPacket::kInboundBandwithPacketsFieldNumber;
 const int TransmitPacket::kOutboundBandwithPacketsFieldNumber;
 const int TransmitPacket::kHostNameFieldNumber;
+const int TransmitPacket::kClientVersionFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 TransmitPacket::TransmitPacket()
@@ -246,6 +249,10 @@ TransmitPacket::TransmitPacket(const TransmitPacket& from)
   if (from.hostname().size() > 0) {
     hostname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.hostname_);
   }
+  clientversion_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.clientversion().size() > 0) {
+    clientversion_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.clientversion_);
+  }
   ::memcpy(&memoryused_, &from.memoryused_,
     static_cast<size_t>(reinterpret_cast<char*>(&outboundbandwithpackets_) -
     reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
@@ -259,6 +266,7 @@ void TransmitPacket::SharedCtor() {
   ip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   deviceid_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   hostname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clientversion_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&memoryused_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&outboundbandwithpackets_) -
       reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
@@ -274,6 +282,7 @@ void TransmitPacket::SharedDtor() {
   ip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   deviceid_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   hostname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clientversion_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
 void TransmitPacket::SetCachedSize(int size) const {
@@ -295,6 +304,7 @@ void TransmitPacket::Clear() {
   ip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   deviceid_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   hostname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clientversion_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&memoryused_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&outboundbandwithpackets_) -
       reinterpret_cast<char*>(&memoryused_)) + sizeof(outboundbandwithpackets_));
@@ -432,6 +442,22 @@ const char* TransmitPacket::_InternalParse(const char* begin, const char* end, v
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         ctx->extra_parse_data().SetFieldName("hostService.TransmitPacket.hostName");
         object = msg->mutable_hostname();
+        if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
+          parser_till_end = ::google::protobuf::internal::GreedyStringParserUTF8;
+          goto string_till_end;
+        }
+        GOOGLE_PROTOBUF_PARSER_ASSERT(::google::protobuf::internal::StringCheckUTF8(ptr, size, ctx));
+        ::google::protobuf::internal::InlineGreedyStringParser(object, ptr, size, ctx);
+        ptr += size;
+        break;
+      }
+      // string ClientVersion = 14;
+      case 14: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 114) goto handle_unusual;
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        ctx->extra_parse_data().SetFieldName("hostService.TransmitPacket.ClientVersion");
+        object = msg->mutable_clientversion();
         if (size > end - ptr + ::google::protobuf::internal::ParseContext::kSlopBytes) {
           parser_till_end = ::google::protobuf::internal::GreedyStringParserUTF8;
           goto string_till_end;
@@ -652,6 +678,21 @@ bool TransmitPacket::MergePartialFromCodedStream(
         break;
       }
 
+      // string ClientVersion = 14;
+      case 14: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (114 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_clientversion()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->clientversion().data(), static_cast<int>(this->clientversion().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "hostService.TransmitPacket.ClientVersion"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -764,6 +805,16 @@ void TransmitPacket::SerializeWithCachedSizes(
       13, this->hostname(), output);
   }
 
+  // string ClientVersion = 14;
+  if (this->clientversion().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->clientversion().data(), static_cast<int>(this->clientversion().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "hostService.TransmitPacket.ClientVersion");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      14, this->clientversion(), output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
@@ -866,6 +917,17 @@ void TransmitPacket::SerializeWithCachedSizes(
         13, this->hostname(), target);
   }
 
+  // string ClientVersion = 14;
+  if (this->clientversion().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->clientversion().data(), static_cast<int>(this->clientversion().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "hostService.TransmitPacket.ClientVersion");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        14, this->clientversion(), target);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target);
@@ -913,6 +975,13 @@ size_t TransmitPacket::ByteSizeLong() const {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->hostname());
+  }
+
+  // string ClientVersion = 14;
+  if (this->clientversion().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->clientversion());
   }
 
   // int64 MemoryUsed = 1;
@@ -1017,6 +1086,10 @@ void TransmitPacket::MergeFrom(const TransmitPacket& from) {
 
     hostname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.hostname_);
   }
+  if (from.clientversion().size() > 0) {
+
+    clientversion_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.clientversion_);
+  }
   if (from.memoryused() != 0) {
     set_memoryused(from.memoryused());
   }
@@ -1078,6 +1151,8 @@ void TransmitPacket::InternalSwap(TransmitPacket* other) {
   deviceid_.Swap(&other->deviceid_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   hostname_.Swap(&other->hostname_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  clientversion_.Swap(&other->clientversion_, &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(memoryused_, other->memoryused_);
   swap(memoryavailable_, other->memoryavailable_);
