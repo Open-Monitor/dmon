@@ -36,11 +36,11 @@ server.addService({
     ...protoDescriptor.HostService.service.Transmit,
     requestDeserialize: (raw) => ({
       raw,
-      marshalCb: protoDescriptor
+      request: protoDescriptor
           .HostService
           .service
           .Transmit
-          .requestDeserialize,
+          .requestDeserialize(raw),
     }),
   },
 }, {

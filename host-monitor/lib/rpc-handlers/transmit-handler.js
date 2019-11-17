@@ -5,7 +5,7 @@ import {unixNow, ElasticClient} from '../helpers';
 import {CLIENT_CREATED} from '../constants/elastic';
 import {liveSocketPool} from '../../lib/bridge';
 
-export default async ({raw, marshalCb}) => {
+export default async ({request}) => {
   manifest.logger(Types.LOG, request);
 
   // writes to an open socket if found
@@ -16,7 +16,7 @@ export default async ({raw, marshalCb}) => {
   const elasticResp = await ElasticClient.index(
       'transmission',
       {
-        ...marshalCb(raw),
+        ...request,
         IndexedOn: unixNow(),
       },
   );
