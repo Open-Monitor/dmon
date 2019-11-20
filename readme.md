@@ -1,7 +1,7 @@
 # Open Monitor
 Open Monitor is a server infrastructure tool used to monitor server instances.
 
-![](image/main.gif)
+![](images/main.gif)
 
 ### Startup
 Clone the repo, and follow the instructions below
