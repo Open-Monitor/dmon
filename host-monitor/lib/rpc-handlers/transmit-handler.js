@@ -1,7 +1,7 @@
 import manifest from '../../config/manifest';
 import {Types} from '../../logger';
 
-import {unixNow, ElasticClient} from '../helpers';
+import {unixNow, ElasticClient, calcFreqAdj} from '../utils';
 import {CLIENT_CREATED} from '../constants/elastic';
 import {liveSocketPool} from '../../lib/bridge';
 
@@ -23,6 +23,6 @@ export default async ({request}) => {
 
   return {
     DidInsert: elasticResp === CLIENT_CREATED,
-    FrequencyAdjustment: 2000, // todo: actually compute this.
+    FrequencyAdjustment: calcFreqAdj(liveSocketPool.nClients), 
   };
 };

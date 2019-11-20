@@ -2,7 +2,7 @@ import grpc from 'grpc';
 import io from 'socket.io';
 
 import manifest from './config/manifest';
-import {loadProto} from './lib/helpers';
+import {loadProto} from './lib/utils';
 import {transmitHandler} from './lib/rpc-handlers';
 import {liveWebSocketHandler} from './lib/ws-handlers';
 

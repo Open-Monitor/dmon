@@ -7,6 +7,11 @@ class LiveSocketPool {
  */
   constructor() {
     this.active = {};
+    this.ips = {};
+  }
+
+  get nClients() {
+    return this.ips.length;
   }
 
   /**
@@ -29,6 +34,8 @@ class LiveSocketPool {
       if (props === undefined) {
         return;
       }
+
+      this.ips = (this.ips.includes(ip)) ? this.ips : [...this.ips, ip];
 
       const {ips, cb} = props;
       if (ips.includes(ip) || ips.length === 0) {

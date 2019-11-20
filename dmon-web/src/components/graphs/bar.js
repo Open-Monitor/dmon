@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 export default ({ colors, data, hostName, barLabels}) => (
     <Bar data={{
         labels: barLabels||[""],
-        datasets: Object.keys(data).map((dataKey, index) => {
+        datasets: Object.keys(data).map((dataKey) => {
             const rgb = colors[dataKey];
             return ({
                 label: hostName[dataKey][0],
