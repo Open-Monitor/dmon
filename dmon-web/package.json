@@ -18,7 +18,7 @@
     "react-dom": "^16.11.0",
     "react-fontawesome": "^1.7.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "0.9.5",
+    "react-scripts": "5.0.1",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {},
